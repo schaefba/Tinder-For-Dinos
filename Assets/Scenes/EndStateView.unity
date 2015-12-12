@@ -395,7 +395,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -50}
   m_SizeDelta: {x: 450, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2121144389
@@ -437,15 +437,16 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: And on the 7th day, an asteroid came down. Although you had become the king
-    of the dinosaurs - the largest and most fierce of dinosaurs - there was nothing
-    you could do in the face of cosmic forces.
+  m_Text: But on the 7th day of your quest for love - just as you thought you found
+    "the one" - an asteroid came down. Although you had become the king of the dinosaurs
+    - the largest and most fierce of dinosaurs - there was nothing you could do in
+    the face of cosmic forces.
 --- !u!222 &2121144391
 CanvasRenderer:
   m_ObjectHideFlags: 0

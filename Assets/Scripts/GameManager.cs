@@ -42,4 +42,5 @@ public class GameManager {
 	public void RestartGame() {
 		SceneManager.LoadScene ("OutcomeView", LoadSceneMode.Single);
 	}
+		
 }
