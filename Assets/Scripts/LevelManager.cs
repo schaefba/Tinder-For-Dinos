@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class LevelManager : MonoBehaviour {
 
-	Dictionary<int, List<Dinosaur>> LevelToDinosaurs = new Dictionary<int, List<Dinosaur>> () {
+	Dictionary<Level, List<Dinosaur>> LevelToDinosaurs = new Dictionary<Level, List<Dinosaur>> () {
 		
 		{Level.One, new List<Dinosaur>(){
 			new Dinosaur()
