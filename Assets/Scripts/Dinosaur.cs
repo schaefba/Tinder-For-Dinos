@@ -9,5 +9,5 @@ public class Dinosaur : MonoBehaviour {
 	public string BiographyOne;
 	public string BiographyTwo;
 	public int Size;
-
+	public int OrderInPool;
 }

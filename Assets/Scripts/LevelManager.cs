@@ -1,8 +1,42 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 public class LevelManager : MonoBehaviour {
+
+	private Level _currentLevel;
+
+
+
+	public void LoadLevel(Level level)
+	{
+		//display text for beginning of level
+		//select Dinosaur list for level
+		//start at index 0 of that pool
+		_currentLevel = level;
+		List<Dinosaur> dinosaurList = LevelToDinosaurs [level];
+		Dinosaur dino = dinosaurList.FirstOrDefault ();
+		//ProfileViewManager.LoadProfileFor(dino);
+	}
+
+	public void LoadNextProfile(Dinosaur dino)
+	{
+		int nextIndex = dino.OrderInPool + 1;
+		Dinosaur nextDino = LevelToDinosaurs [_currentLevel].FirstOrDefault (x => x.OrderInPool == nextIndex);
+		LoadProfileFor (nextDino);
+	}
+
+	public void LoadOutcomeScene()
+	{
+		//calculate outcome
+		//load specific scene based on outcome info
+	}
+
+	public void LoadProfileFor(Dinosaur dino)
+	{
+		//load new dino info into profileviewmanager.
+	}
 
 	Dictionary<Level, List<Dinosaur>> LevelToDinosaurs = new Dictionary<Level, List<Dinosaur>> () {
 		
@@ -14,7 +48,8 @@ public class LevelManager : MonoBehaviour {
 				BiographyOne = "asdf asdf",
 				BiographyTwo = "qwer qwer",
 				ProfilePicture = new SpriteRenderer(),
-				Size = 5
+				Size = 5,
+				OrderInPool = 1
 			},
 			new Dinosaur()
 			{
@@ -23,7 +58,8 @@ public class LevelManager : MonoBehaviour {
 				BiographyOne = "asdf asdf",
 				BiographyTwo = "qwer qwer",
 				ProfilePicture = new SpriteRenderer(),
-				Size = 2
+				Size = 2,
+				OrderInPool = 2
 			},
 			new Dinosaur()
 			{
@@ -32,7 +68,8 @@ public class LevelManager : MonoBehaviour {
 				BiographyOne = "asdf asdf",
 				BiographyTwo = "qwer qwer",
 				ProfilePicture = new SpriteRenderer(),
-				Size = 3
+				Size = 3,
+				OrderInPool = 3
 			},
 			new Dinosaur()
 			{
@@ -41,7 +78,8 @@ public class LevelManager : MonoBehaviour {
 				BiographyOne = "asdf asdf",
 				BiographyTwo = "qwer qwer",
 				ProfilePicture = new SpriteRenderer(),
-				Size = 4
+				Size = 4,
+				OrderInPool = 4
 			},
 			new Dinosaur()
 			{
@@ -50,7 +88,8 @@ public class LevelManager : MonoBehaviour {
 				BiographyOne = "asdf asdf",
 				BiographyTwo = "qwer qwer",
 				ProfilePicture = new SpriteRenderer(),
-				Size = 7
+				Size = 7,
+				OrderInPool = 5
 			}
 		}},
 		{Level.Two, new List<Dinosaur>(){
