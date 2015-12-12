@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Dinosaur : MonoBehaviour {
+public class Dinosaur {
 	
 	public SpriteRenderer ProfilePicture;
 	public string Name;

@@ -97,7 +97,7 @@ GameObject:
   - 114: {fileID: 5083345}
   - 114: {fileID: 5083347}
   m_Layer: 5
-  m_Name: App Name
+  m_Name: AppName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -491,7 +491,7 @@ GameObject:
   - 114: {fileID: 984472491}
   - 114: {fileID: 984472493}
   m_Layer: 5
-  m_Name: Placeholder
+  m_Name: Age
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -546,7 +546,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Placeholder
+  m_Text: Age
 --- !u!222 &984472492
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -577,7 +577,7 @@ GameObject:
   - 222: {fileID: 1018934644}
   - 114: {fileID: 1018934643}
   m_Layer: 5
-  m_Name: Profile Pic
+  m_Name: ProfilePic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -699,7 +699,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: I am a dinosaur. Blah blah blah blah blah asdfjkdlfjaklfjdkafjdklajfkdla;jfkdal;
+  m_Text: Bio 1 text
 --- !u!222 &1122434276
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -791,7 +791,7 @@ GameObject:
   - 114: {fileID: 1467181206}
   - 114: {fileID: 1467181205}
   m_Layer: 5
-  m_Name: No Button
+  m_Name: NoButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -834,7 +834,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 0.99264705, g: 0.99264705, b: 0.99264705, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -853,7 +853,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1467181206}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1984879082}
+        m_MethodName: LoadNextProfile
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1467181206
@@ -955,7 +966,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'I like to eat other dinosaurs! blah blah blah blah blah ajsdfkl;jakfldjaklfjdkal;fjdkla;fjdkla; '
+  m_Text: Bio 2 text
 --- !u!222 &1503811349
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1065,7 +1076,7 @@ GameObject:
   - 114: {fileID: 1663721197}
   - 114: {fileID: 1663721196}
   m_Layer: 5
-  m_Name: Yes Button
+  m_Name: YesButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1209,8 +1220,9 @@ GameObject:
   - 224: {fileID: 1984879079}
   - 222: {fileID: 1984879081}
   - 114: {fileID: 1984879080}
+  - 114: {fileID: 1984879082}
   m_Layer: 5
-  m_Name: Phone Screen
+  m_Name: PhoneScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1271,3 +1283,14 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1984879078}
+--- !u!114 &1984879082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1984879078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 140ec4158cba44cc98adcf5d877e35a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
