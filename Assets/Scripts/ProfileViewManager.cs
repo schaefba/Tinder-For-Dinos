@@ -4,29 +4,36 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-public class ProfileViewManager : MonoBehaviour {
+public class ProfileViewManager {
 
-	private GameObject profilePicture;
-	private GameObject profileName;
-	private GameObject age;
-	private GameObject biographyOne;
-	private GameObject biographyTwo;
-	private GameObject size;
-
-	void Start () {
-		profileName = GameObject.Find("PhoneScreen/Description/Name");
-		age = GameObject.Find("PhoneScreen/Description/Age");
-		biographyOne = GameObject.Find("PhoneScreen/Description/Bio1");
-		biographyTwo = GameObject.Find("PhoneScreen/Description/Bio2");
-		profilePicture = GameObject.Find("PhoneScreen/ProfilePic");
+	// make sure the constructor is private, so it can only be instantiated here
+	private ProfileViewManager() {
 	}
+
+	private static ProfileViewManager instance;
+
+	public static ProfileViewManager Instance {
+		get {
+			if(instance==null) {
+				instance = new ProfileViewManager();
+			}
+
+			return instance;
+		}
+	}
+
+	private Text profileName = GameObject.Find("PhoneScreen/Description/Name").GetComponent<Text>();
+	private Text age = GameObject.Find("PhoneScreen/Description/Age").GetComponent<Text>();
+	private Text biographyOne = GameObject.Find("PhoneScreen/Description/Bio1").GetComponent<Text>();
+	private Text biographyTwo = GameObject.Find("PhoneScreen/Description/Bio2").GetComponent<Text>();
+	private SpriteRenderer profilePicture = GameObject.Find("PhoneScreen/ProfilePic").GetComponent<SpriteRenderer>();
 
 	public void LoadProfileFor(Dinosaur dino)
 	{
-		profilePicture.GetComponent<SpriteRenderer>().sprite = dino.ProfilePicture.sprite;
-		profileName.GetComponent<Text>().text = dino.Name;
-		age.GetComponent<Text>().text = dino.Age;
-		biographyOne.GetComponent<Text>().text = dino.BiographyOne;
-		biographyTwo.GetComponent<Text>().text = dino.BiographyTwo;
+		profilePicture.sprite = dino.ProfilePicture.sprite;
+		profileName.text = dino.Name;
+		age.text = dino.Age;
+		biographyOne.text = dino.BiographyOne;
+		biographyTwo.text = dino.BiographyTwo;
 	}
 }

@@ -5,9 +5,25 @@ using System.Linq;
 
 public class LevelManager : MonoBehaviour {
 
+	ProfileViewManager PVM;
+
+	// make sure the constructor is private, so it can only be instantiated here
+	private LevelManager() {
+		PVM = ProfileViewManager.Instance;
+	}
+
 	private Level _currentLevel;
+	private static LevelManager instance;
 
+	public static LevelManager Instance {
+		get {
+			if(instance==null) {
+				instance = new LevelManager();
+			}
 
+			return instance;
+		}
+	}
 
 	public void LoadLevel(Level level)
 	{
@@ -17,25 +33,20 @@ public class LevelManager : MonoBehaviour {
 		_currentLevel = level;
 		List<Dinosaur> dinosaurList = LevelToDinosaurs [level];
 		Dinosaur dino = dinosaurList.FirstOrDefault ();
-		//ProfileViewManager.LoadProfileFor(dino);
+		PVM.LoadProfileFor(dino);
 	}
 
 	public void LoadNextProfile(Dinosaur dino)
 	{
 		int nextIndex = dino.OrderInPool + 1;
 		Dinosaur nextDino = LevelToDinosaurs [_currentLevel].FirstOrDefault (x => x.OrderInPool == nextIndex);
-		LoadProfileFor (nextDino);
+		PVM.LoadProfileFor (nextDino);
 	}
 
 	public void LoadOutcomeScene()
 	{
 		//calculate outcome
 		//load specific scene based on outcome info
-	}
-
-	public void LoadProfileFor(Dinosaur dino)
-	{
-		//load new dino info into profileviewmanager.
 	}
 
 	Dictionary<Level, List<Dinosaur>> LevelToDinosaurs = new Dictionary<Level, List<Dinosaur>> () {
