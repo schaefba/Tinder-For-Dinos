@@ -4,4 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/AppView.unity
+  - enabled: 1
+    path: Assets/Scenes/FeedbackView.unity
+  - enabled: 1
+    path: Assets/Scenes/OutcomeView.unity
+  - enabled: 1
+    path: Assets/Scenes/FindingLoveView.unity
+  - enabled: 1
+    path: Assets/Scenes/EndStateView.unity

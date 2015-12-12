@@ -40,6 +40,6 @@ public class GameManager {
 	}
 
 	public void RestartGame() {
-		SceneManager.LoadScene ("MenuScene", LoadSceneMode.Single);
+		SceneManager.LoadScene ("OutcomeView", LoadSceneMode.Single);
 	}
 }
