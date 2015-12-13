@@ -27,7 +27,7 @@ public class ProfileViewManager : MonoBehaviour {
 
         profilePicture.sprite = Resources.Load<Sprite>(dino.ProfilePictureName);
         profileName.text = dino.Name;
-		age.text = dino.Age;
+		age.text = dino.Age + " Years Old";
 		biographyOne.text = dino.BiographyOne;
 		biographyTwo.text = dino.BiographyTwo;
 	}

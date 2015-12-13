@@ -46,11 +46,24 @@ public class LevelManager : MonoBehaviour {
 		UpdateLevelText (level);
 		Invoke ("HideLevelImage", 2f);
 
+		UpdateGameStatusText ();
+
 		//load next dinosaur profile
 		GM.DaysGoneBy = level;
 		List<Dinosaur> dinosaurList = DinosaursInfo.getDinosaursForLevel(level);
 		_currentDino = dinosaurList.FirstOrDefault ();
 		PVM.LoadProfileFor(_currentDino);
+	}
+
+	private void UpdateGameStatusText()
+	{
+		var foodText = GameObject.Find("GameStatus/CurrentFood").GetComponent<Text>();
+		var daysSurvived = GameObject.Find("GameStatus/DaysSurvived").GetComponent<Text>();
+		//var numDates = GameObject.Find("GameStatus/NumDates").GetComponent<Text>();
+
+		foodText.text = "Current Food: " + GM.DaysUntilStarvation.ToString();
+		daysSurvived.text = "Days Survived: " + GM.DaysGoneBy.ToString();
+		//numDates.text = DinosaursInfo.getDinosaursForLevel.FirstOrDefault(x => x
 	}
 
     public void SetCreated(bool created)
