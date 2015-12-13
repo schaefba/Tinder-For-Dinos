@@ -10,17 +10,17 @@ public class LevelManager : MonoBehaviour {
 
 	private ProfileViewManager PVM;
 	private GameManager GM;
-	private int _currentLevel;
+//	private int _currentLevel;
 	private Dinosaur _currentDino;
 	private GameObject _levelTransitionScreen;
 	private Text _levelTransitionText;
 	private int _outcome;
-	private static bool created = false;
+	private static bool _created = false;
 
 	void Awake() {
-		if (!created) {
+		if (!_created) {
 			DontDestroyOnLoad (this.gameObject);
-			created = true;
+			_created = true;
 			LoadLevel (1);
 		} else {
 			DestroyImmediate(this.gameObject);
@@ -47,11 +47,16 @@ public class LevelManager : MonoBehaviour {
 		Invoke ("HideLevelImage", 2f);
 
 		//load next dinosaur profile
-		_currentLevel = level;
+		GM.DaysGoneBy = level;
 		List<Dinosaur> dinosaurList = DinosaursInfo.getDinosaursForLevel(level);
 		_currentDino = dinosaurList.FirstOrDefault ();
 		PVM.LoadProfileFor(_currentDino);
 	}
+
+    public void SetCreated(bool created)
+    {
+        _created = created;
+    }
 
 	private void HideLevelImage()
 	{
@@ -70,8 +75,8 @@ public class LevelManager : MonoBehaviour {
 
 	public void NextProfileHandler()
 	{
-		var dinosaurPool = DinosaursInfo.getDinosaursForLevel(_currentLevel);
-
+		var dinosaurPool = DinosaursInfo.getDinosaursForLevel(GM.DaysGoneBy);
+	    GM.NewGame = false;
 		if (_currentDino.OrderInPool >= dinosaurPool.Count ()) {
 			GM.UpdateDaysUntilStarvation (-1);
 		} else {
@@ -90,7 +95,7 @@ public class LevelManager : MonoBehaviour {
 
     public void OutcomeScreenHandler()
 	{
-		if (GM.DaysUntilStarvation <= 0) {
+		if ((GM.DaysUntilStarvation <= 0) || (_outcome == GameManager.GOT_EATEN)) {
 			GM.RestartGame ();
 		} else {
 			SceneManager.LoadScene ("AppView");
@@ -135,8 +140,8 @@ public class LevelManager : MonoBehaviour {
 			okButton.onClick.AddListener(() => OutcomeScreenHandler());
 		}
 
-		if (level == SceneManager.GetSceneByName ("AppView").buildIndex) {
-			LoadLevel ((int)_currentLevel + 1);
+		if (level == SceneManager.GetSceneByName ("AppView").buildIndex && !GM.NewGame) {
+			LoadLevel ((int)GM.DaysGoneBy + 1);
 		}
 	}
 

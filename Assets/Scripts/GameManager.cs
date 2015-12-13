@@ -17,9 +17,10 @@ public class GameManager {
 
 
 	private int _daysUntilStarve = INITIAL_DAYS_UNTIL_STARVE;
-	public int TotalGameDays = 0;
-	private int _daysGoneBy = 0;
+	public int TotalGameDays;
+    public int DaysGoneBy { get; set; }
     private int _size = 5;
+    public bool NewGame = true;
 
 
 	public int DaysUntilStarvation { get { return _daysUntilStarve; } }
@@ -47,9 +48,28 @@ public class GameManager {
 		levelManager.LoadOutcomeSceneForEndOfDay();
 	}
 
-	public void RestartGame() {
-		SceneManager.LoadScene ("OutcomeView", LoadSceneMode.Single);
+	public void RestartGame()
+	{
+	    GameObject levelManager = GameObject.Find("LevelManager").gameObject;
+	    LevelManager levelManagerScript = levelManager.GetComponent<LevelManager>();
+	    levelManagerScript.SetCreated(false);
+	    GameObject.DestroyImmediate(levelManager);
+
+	    ResetGameManager();
+
+        
+
+	    SceneManager.LoadScene ("AppView", LoadSceneMode.Single);
 	}
+
+    private void ResetGameManager()
+    {
+        _daysUntilStarve = INITIAL_DAYS_UNTIL_STARVE;
+        TotalGameDays = 0;
+        DaysGoneBy = 0;
+        _size = 5;
+        NewGame = true;
+    }
 
     public int CalculateOutcome(Dinosaur currentDino)
     {
