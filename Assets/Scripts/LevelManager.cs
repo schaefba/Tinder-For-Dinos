@@ -125,7 +125,20 @@ public class LevelManager : MonoBehaviour {
         GM.NewGame = false;
         _outcome = GM.CalculateOutcome(_currentDino);
 		GM.NumOfDates++;
-        LoadOutcomeSceneForMatch();
+        if (GM.DaysGoneBy >= DinosaursInfo.GetLevelCount())
+        {
+            LoadEndingScene();
+        }
+        else
+        {
+            LoadOutcomeSceneForMatch();
+        }
+        
+    }
+
+    private void LoadEndingScene()
+    {
+        SceneManager.LoadScene("FindingLoveView");
     }
 
     public void OutcomeScreenHandler()
