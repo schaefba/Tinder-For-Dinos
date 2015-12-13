@@ -9,6 +9,11 @@ public class DinosaursInfo {
         return _levelToDinosaurs[level];
     }
 
+    public static int GetLevelCount()
+    {
+        return _levelToDinosaurs.Count;
+    }
+
     private static Dictionary<int, List<Dinosaur>> _levelToDinosaurs = new Dictionary<int, List<Dinosaur>>() {
 
         {1, new List<Dinosaur>(){
@@ -138,7 +143,20 @@ public class DinosaursInfo {
                 Size = 5,
                 OrderInPool = 3
             }
-        }}
+        }},
+        {5, new List<Dinosaur>()
+        {
+            new Dinosaur()
+            {
+                Name = "Pat",
+                Age = "27",
+                BiographyOne = "Likes: Frozen Yogurt, Dancing",
+                BiographyTwo = "Looking for someone who wants a good time",
+                ProfilePictureName = "Static_Assets/barney-love",
+                Size = 5,
+                OrderInPool = 1
+            }
+        } }
 
     };
 }

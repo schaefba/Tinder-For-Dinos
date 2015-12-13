@@ -17,7 +17,7 @@ public class GameManager {
 
 
 	private int _daysUntilStarve = INITIAL_DAYS_UNTIL_STARVE;
-	public int TotalGameDays;
+//	public int TotalGameDays;
     public int DaysGoneBy { get; set; }
     private int _size = 5;
     public bool NewGame = true;
@@ -56,16 +56,12 @@ public class GameManager {
 	    GameObject.DestroyImmediate(levelManager);
 
 	    ResetGameManager();
-
-        
-
-	    SceneManager.LoadScene ("AppView", LoadSceneMode.Single);
+        SceneManager.LoadScene ("AppView", LoadSceneMode.Single);
 	}
 
     private void ResetGameManager()
     {
         _daysUntilStarve = INITIAL_DAYS_UNTIL_STARVE;
-        TotalGameDays = 0;
         DaysGoneBy = 0;
         _size = 5;
         NewGame = true;
