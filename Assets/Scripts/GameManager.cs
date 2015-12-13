@@ -8,14 +8,15 @@ public class GameManager {
 	public const int POSITIVE_STATE = 1;
 	public const int NEUTRAL_STATE = 0;
 	public const int NEGATIVE_STATE = -1;
-	public const int INITIAL_DAYS_UNTIL_STARVE = 5;
+	public const int INITIAL_DAYS_UNTIL_STARVE = 2;
 
 
-	public int daysUntilStarve = INITIAL_DAYS_UNTIL_STARVE;
+	private int _daysUntilStarve = INITIAL_DAYS_UNTIL_STARVE;
 	public int totalGameDays = 0;
-
 	private int daysGoneBy = 0;
 
+
+	public int DaysUntilStarvation { get { return _daysUntilStarve; } }
 
 	private static GameManager instance;
 
@@ -33,10 +34,11 @@ public class GameManager {
 		}
 	}
 
-	void LoadOutcomeText(int status){
-		string outcomeString = OutcomeStrings.getRandomOutcomeText (status);
-		Text outcomeText = GameObject.Find ("Canvas/SummaryText").GetComponent<Text>();
-		outcomeText.text = outcomeString;
+	public void UpdateDaysUntilStarvation(int days)
+	{
+		_daysUntilStarve += days;
+		LevelManager levelManager = GameObject.Find ("LevelManager").GetComponent<LevelManager> ();
+		levelManager.LoadOutcomeScene();
 	}
 
 	public void RestartGame() {

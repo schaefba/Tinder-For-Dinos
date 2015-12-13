@@ -3,20 +3,27 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour {
 
 	private ProfileViewManager PVM;
+	private GameManager GM;
 	private Level _currentLevel;
 	private Dinosaur _currentDino;
 	private GameObject _levelTransitionScreen;
 	private Text _levelTransitionText;
+	private int _outcome;
 
 	// make sure the constructor is private, so it can only be instantiated here
 	void Awake() {
-		PVM = ProfileViewManager.Instance;
+		DontDestroyOnLoad(gameObject);
+		PVM = GameObject.Find ("PhoneScreen/PVM").GetComponent<ProfileViewManager> ();
+		GM = GameManager.Instance; 
 		_levelTransitionScreen = GameObject.Find ("LevelTransition");
 		_levelTransitionText = GameObject.Find("LevelTransition/Text").GetComponent<Text>();
+
+
 		LoadLevel (Level.One);
 	}
 
@@ -25,8 +32,9 @@ public class LevelManager : MonoBehaviour {
 		//display text for beginning of level
 		ShowLevelImage ();
 		UpdateLevelText (level);
-		Invoke ("HideLevelImage", 4f);
+		Invoke ("HideLevelImage", 2f);
 
+		//load next dinosaur profile
 		_currentLevel = level;
 		List<Dinosaur> dinosaurList = LevelToDinosaurs [level];
 		_currentDino = dinosaurList.FirstOrDefault ();
@@ -53,7 +61,7 @@ public class LevelManager : MonoBehaviour {
 		var dinosaurPool = LevelToDinosaurs [_currentLevel];
 
 		if (_currentDino.OrderInPool >= dinosaurPool.Count ()) {
-			LoadLevel (_currentLevel + 1);
+			GM.UpdateDaysUntilStarvation (-1);
 		} else {
 			int nextIndex = _currentDino.OrderInPool + 1;
 			Dinosaur nextDino = dinosaurPool.FirstOrDefault (x => x.OrderInPool == nextIndex);
@@ -62,10 +70,47 @@ public class LevelManager : MonoBehaviour {
 		}
 	}
 
+	public void OutcomeScreenHandler()
+	{
+		if (GM.DaysUntilStarvation <= 0) {
+			GM.RestartGame ();
+		} else {
+			SceneManager.LoadScene ("AppView");
+		}
+	}
+
+	void LoadOutcomeText(int status){
+		string outcomeString = OutcomeStrings.getRandomOutcomeText (status);
+		Text outcomeText = GameObject.Find("FullCanvas/SummaryText").GetComponent<Text>();
+		outcomeText.text = outcomeString;
+	}
+
 	public void LoadOutcomeScene()
 	{
+		var daysTillStarvation = GameManager.Instance.DaysUntilStarvation;
+		SceneManager.LoadScene ("OutcomeView", LoadSceneMode.Single);
+
+		//after scene is loaded - populate it with outcome text
+		if (daysTillStarvation <= 0) {
+			_outcome = -1;
+		} else {
+			_outcome = 1;
+		}
+
 		//calculate outcome
 		//load specific scene based on outcome info
+	}
+
+	private void OnLevelWasLoaded(int level) {
+		if (level == SceneManager.GetSceneByName ("OutcomeView").buildIndex) {
+			LoadOutcomeText (_outcome);
+			Button okButton = GameObject.Find ("FullCanvas/Button").GetComponent<Button> ();
+			okButton.onClick.AddListener(() => OutcomeScreenHandler());
+		}
+
+		if (level == SceneManager.GetSceneByName ("AppView").buildIndex) {
+			LoadLevel (_currentLevel + 1);
+		}
 	}
 
 	Dictionary<Level, List<Dinosaur>> LevelToDinosaurs = new Dictionary<Level, List<Dinosaur>> () {
