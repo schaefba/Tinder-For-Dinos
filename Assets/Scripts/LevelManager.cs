@@ -130,8 +130,8 @@ public class LevelManager : MonoBehaviour {
 				Age = "25",
 				BiographyOne = "asdf asdf",
 				BiographyTwo = "qwer qwer",
-				ProfilePicture = new SpriteRenderer(),
-				Size = 5,
+                ProfilePictureName = "Static_Assets/Cerasinops",
+                Size = 5,
 				OrderInPool = 1
 			},
 			new Dinosaur()
@@ -140,8 +140,8 @@ public class LevelManager : MonoBehaviour {
 				Age = "30",
 				BiographyOne = "asdf asdf",
 				BiographyTwo = "qwer qwer",
-				ProfilePicture = new SpriteRenderer(),
-				Size = 2,
+                ProfilePictureName = "Static_Assets/Cerasinops",
+                Size = 2,
 				OrderInPool = 2
 			},
 			new Dinosaur()
@@ -150,8 +150,8 @@ public class LevelManager : MonoBehaviour {
 				Age = "75",
 				BiographyOne = "asdf asdf",
 				BiographyTwo = "qwer qwer",
-				ProfilePicture = new SpriteRenderer(),
-				Size = 3,
+                ProfilePictureName = "Static_Assets/Cerasinops",
+                Size = 3,
 				OrderInPool = 3
 			},
 			new Dinosaur()
@@ -160,8 +160,8 @@ public class LevelManager : MonoBehaviour {
 				Age = "28",
 				BiographyOne = "asdf asdf",
 				BiographyTwo = "qwer qwer",
-				ProfilePicture = new SpriteRenderer(),
-				Size = 4,
+                ProfilePictureName = "Static_Assets/Cerasinops",
+                Size = 4,
 				OrderInPool = 4
 			},
 			new Dinosaur()
@@ -170,8 +170,8 @@ public class LevelManager : MonoBehaviour {
 				Age = "42",
 				BiographyOne = "asdf asdf",
 				BiographyTwo = "qwer qwer",
-				ProfilePicture = new SpriteRenderer(),
-				Size = 7,
+                ProfilePictureName = "Static_Assets/Cerasinops",
+                Size = 7,
 				OrderInPool = 5
 			}
 		}},
@@ -182,8 +182,8 @@ public class LevelManager : MonoBehaviour {
 				Age = "1 billion",
 				BiographyOne = "asdf asdf",
 				BiographyTwo = "qwer qwer",
-				ProfilePicture = new SpriteRenderer(),
-				Size = 5,
+                ProfilePictureName = "Static_Assets/Cerasinops",
+                Size = 5,
 				OrderInPool = 1
 			},
 			new Dinosaur()
@@ -192,8 +192,8 @@ public class LevelManager : MonoBehaviour {
 				Age = "1 billion",
 				BiographyOne = "asdf asdf",
 				BiographyTwo = "qwer qwer",
-				ProfilePicture = new SpriteRenderer(),
-				Size = 5,
+                ProfilePictureName = "Static_Assets/Cerasinops",
+                Size = 5,
 				OrderInPool = 2
 			},
 			new Dinosaur()
@@ -202,8 +202,8 @@ public class LevelManager : MonoBehaviour {
 				Age = "1 billion",
 				BiographyOne = "asdf asdf",
 				BiographyTwo = "qwer qwer",
-				ProfilePicture = new SpriteRenderer(),
-				Size = 5,
+                ProfilePictureName = "Static_Assets/Cerasinops",
+                Size = 5,
 				OrderInPool = 3
 			},
 			new Dinosaur()
@@ -212,8 +212,8 @@ public class LevelManager : MonoBehaviour {
 				Age = "1 billion",
 				BiographyOne = "asdf asdf",
 				BiographyTwo = "qwer qwer",
-				ProfilePicture = new SpriteRenderer(),
-				Size = 5,
+                ProfilePictureName = "Static_Assets/Cerasinops",
+                Size = 5,
 				OrderInPool = 4
 			},
 			new Dinosaur()
@@ -222,8 +222,8 @@ public class LevelManager : MonoBehaviour {
 				Age = "1 billion",
 				BiographyOne = "asdf asdf",
 				BiographyTwo = "qwer qwer",
-				ProfilePicture = new SpriteRenderer(),
-				Size = 5,
+                ProfilePictureName = "Static_Assets/Cerasinops",
+                Size = 5,
 				OrderInPool = 5
 			}
 		}}

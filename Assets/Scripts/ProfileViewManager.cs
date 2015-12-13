@@ -10,7 +10,7 @@ public class ProfileViewManager : MonoBehaviour {
 	private Text age;
 	private Text biographyOne;
 	private Text biographyTwo;
-	private SpriteRenderer profilePicture;
+	private Image profilePicture;
 
 	public void Awake()
 	{
@@ -23,10 +23,10 @@ public class ProfileViewManager : MonoBehaviour {
 		age = GameObject.Find("PhoneScreen/Description/Age").GetComponent<Text>();
 		biographyOne = GameObject.Find("PhoneScreen/Description/Bio1").GetComponent<Text>();
 		biographyTwo = GameObject.Find("PhoneScreen/Description/Bio2").GetComponent<Text>();
-		profilePicture = GameObject.Find("PhoneScreen/ProfilePic").GetComponent<SpriteRenderer>();
+		profilePicture = GameObject.Find("PhoneScreen/ProfilePic").GetComponent<Image>();
 
-		//profilePicture.sprite = dino.ProfilePicture.sprite;
-		profileName.text = dino.Name;
+        profilePicture.sprite = Resources.Load<Sprite>(dino.ProfilePictureName);
+        profileName.text = dino.Name;
 		age.text = dino.Age;
 		biographyOne.text = dino.BiographyOne;
 		biographyTwo.text = dino.BiographyTwo;

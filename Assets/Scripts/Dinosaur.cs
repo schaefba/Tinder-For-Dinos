@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Dinosaur {
 	
-	public SpriteRenderer ProfilePicture;
+	public string ProfilePictureName;
 	public string Name;
 	public string Age;
 	public string BiographyOne;
