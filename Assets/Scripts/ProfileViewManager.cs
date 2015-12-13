@@ -14,15 +14,17 @@ public class ProfileViewManager : MonoBehaviour {
 
 	public void Awake()
 	{
+		
+	}
+		
+	public void LoadProfileFor(Dinosaur dino)
+	{
 		profileName = GameObject.Find("PhoneScreen/Description/Name").GetComponent<Text>();
 		age = GameObject.Find("PhoneScreen/Description/Age").GetComponent<Text>();
 		biographyOne = GameObject.Find("PhoneScreen/Description/Bio1").GetComponent<Text>();
 		biographyTwo = GameObject.Find("PhoneScreen/Description/Bio2").GetComponent<Text>();
 		profilePicture = GameObject.Find("PhoneScreen/ProfilePic").GetComponent<SpriteRenderer>();
-	}
-		
-	public void LoadProfileFor(Dinosaur dino)
-	{
+
 		//profilePicture.sprite = dino.ProfilePicture.sprite;
 		profileName.text = dino.Name;
 		age.text = dino.Age;

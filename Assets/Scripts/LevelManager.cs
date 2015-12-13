@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,26 +10,33 @@ public class LevelManager : MonoBehaviour {
 
 	private ProfileViewManager PVM;
 	private GameManager GM;
-	private Level _currentLevel;
+	private int _currentLevel;
 	private Dinosaur _currentDino;
 	private GameObject _levelTransitionScreen;
 	private Text _levelTransitionText;
 	private int _outcome;
+	private static bool created = false;
 
-	// make sure the constructor is private, so it can only be instantiated here
 	void Awake() {
-		DontDestroyOnLoad(gameObject);
-		PVM = GameObject.Find ("PhoneScreen/PVM").GetComponent<ProfileViewManager> ();
+		if (!created) {
+			DontDestroyOnLoad (this.gameObject);
+			created = true;
+			LoadLevel (1);
+		} else {
+			DestroyImmediate(this.gameObject);
+		}
+	}
+
+	public void LoadLevel(int level)
+	{
+		PVM = GameObject.Find ("PVM").GetComponent<ProfileViewManager> (); //EventSystem.current.GetComponent<ProfileViewManager> (); //GameObject.Find ("EventSystem").GetComponent<ProfileViewManager> ();
 		GM = GameManager.Instance; 
 		_levelTransitionScreen = GameObject.Find ("LevelTransition");
 		_levelTransitionText = GameObject.Find("LevelTransition/Text").GetComponent<Text>();
+		Button noButton = GameObject.Find ("PhoneScreen/NoButton").GetComponent<Button> ();
+		noButton.onClick.AddListener (() => LoadNextProfile ());
 
 
-		LoadLevel (Level.One);
-	}
-
-	public void LoadLevel(Level level)
-	{
 		//display text for beginning of level
 		ShowLevelImage ();
 		UpdateLevelText (level);
@@ -46,9 +54,9 @@ public class LevelManager : MonoBehaviour {
 		_levelTransitionScreen.SetActive (false);
 	}
 
-	private void UpdateLevelText(Level level)
+	private void UpdateLevelText(int level)
 	{
-		_levelTransitionText.text = "Day " + (int)level;
+		_levelTransitionText.text = "Day " + level;
 	}
 
 	private void ShowLevelImage()
@@ -109,13 +117,13 @@ public class LevelManager : MonoBehaviour {
 		}
 
 		if (level == SceneManager.GetSceneByName ("AppView").buildIndex) {
-			LoadLevel (_currentLevel + 1);
+			LoadLevel ((int)_currentLevel + 1);
 		}
 	}
 
-	Dictionary<Level, List<Dinosaur>> LevelToDinosaurs = new Dictionary<Level, List<Dinosaur>> () {
+	Dictionary<int, List<Dinosaur>> LevelToDinosaurs = new Dictionary<int, List<Dinosaur>> () {
 		
-		{Level.One, new List<Dinosaur>(){
+		{1, new List<Dinosaur>(){
 			new Dinosaur()
 			{
 				Name = "Charles",
@@ -167,7 +175,7 @@ public class LevelManager : MonoBehaviour {
 				OrderInPool = 5
 			}
 		}},
-		{Level.Two, new List<Dinosaur>(){
+		{2, new List<Dinosaur>(){
 			new Dinosaur()
 			{
 				Name = "21",
@@ -220,13 +228,4 @@ public class LevelManager : MonoBehaviour {
 			}
 		}}
 	};
-
-	public enum Level
-	{
-		One = 1,
-		Two = 2,
-		Three = 3,
-		Four = 4,
-		Five = 5
-	}
 }

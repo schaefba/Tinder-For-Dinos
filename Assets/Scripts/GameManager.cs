@@ -37,7 +37,7 @@ public class GameManager {
 	public void UpdateDaysUntilStarvation(int days)
 	{
 		_daysUntilStarve += days;
-		LevelManager levelManager = GameObject.Find ("LevelManager").GetComponent<LevelManager> ();
+		LevelManager levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
 		levelManager.LoadOutcomeScene();
 	}
 
