@@ -8,7 +8,7 @@ public class GameManager {
 	public const int POSITIVE_STATE = 1;
 	public const int NEUTRAL_STATE = 0;
 	public const int NEGATIVE_STATE = -1;
-	public const int INITIAL_DAYS_UNTIL_STARVE = 2;
+	public const int INITIAL_DAYS_UNTIL_STARVE = 4;
 
 
 	private int _daysUntilStarve = INITIAL_DAYS_UNTIL_STARVE;
@@ -44,5 +44,9 @@ public class GameManager {
 	public void RestartGame() {
 		SceneManager.LoadScene ("OutcomeView", LoadSceneMode.Single);
 	}
-		
+
+    public void CalculateOutcome(Dinosaur currentDino)
+    {
+        
+    }
 }

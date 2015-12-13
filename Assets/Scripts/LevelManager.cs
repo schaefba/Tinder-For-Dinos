@@ -44,7 +44,7 @@ public class LevelManager : MonoBehaviour {
 
 		//load next dinosaur profile
 		_currentLevel = level;
-		List<Dinosaur> dinosaurList = LevelToDinosaurs [level];
+		List<Dinosaur> dinosaurList = DinosaursInfo.getDinosaursForLevel(level);
 		_currentDino = dinosaurList.FirstOrDefault ();
 		PVM.LoadProfileFor(_currentDino);
 	}
@@ -66,7 +66,7 @@ public class LevelManager : MonoBehaviour {
 
 	public void LoadNextProfile()
 	{
-		var dinosaurPool = LevelToDinosaurs [_currentLevel];
+		var dinosaurPool = DinosaursInfo.getDinosaursForLevel(_currentLevel);
 
 		if (_currentDino.OrderInPool >= dinosaurPool.Count ()) {
 			GM.UpdateDaysUntilStarvation (-1);
@@ -77,6 +77,11 @@ public class LevelManager : MonoBehaviour {
 			PVM.LoadProfileFor (nextDino);
 		}
 	}
+
+    public void LoadMatch()
+    {
+        GameManager.Instance.CalculateOutcome(_currentDino);
+    }
 
 	public void OutcomeScreenHandler()
 	{
@@ -121,111 +126,5 @@ public class LevelManager : MonoBehaviour {
 		}
 	}
 
-	Dictionary<int, List<Dinosaur>> LevelToDinosaurs = new Dictionary<int, List<Dinosaur>> () {
-		
-		{1, new List<Dinosaur>(){
-			new Dinosaur()
-			{
-				Name = "Charles",
-				Age = "25",
-				BiographyOne = "asdf asdf",
-				BiographyTwo = "qwer qwer",
-                ProfilePictureName = "Static_Assets/Cerasinops",
-                Size = 5,
-				OrderInPool = 1
-			},
-			new Dinosaur()
-			{
-				Name = "Maurice",
-				Age = "30",
-				BiographyOne = "asdf asdf",
-				BiographyTwo = "qwer qwer",
-                ProfilePictureName = "Static_Assets/Cerasinops",
-                Size = 2,
-				OrderInPool = 2
-			},
-			new Dinosaur()
-			{
-				Name = "Lisa",
-				Age = "75",
-				BiographyOne = "asdf asdf",
-				BiographyTwo = "qwer qwer",
-                ProfilePictureName = "Static_Assets/Cerasinops",
-                Size = 3,
-				OrderInPool = 3
-			},
-			new Dinosaur()
-			{
-				Name = "Rebecca",
-				Age = "28",
-				BiographyOne = "asdf asdf",
-				BiographyTwo = "qwer qwer",
-                ProfilePictureName = "Static_Assets/Cerasinops",
-                Size = 4,
-				OrderInPool = 4
-			},
-			new Dinosaur()
-			{
-				Name = "Monique",
-				Age = "42",
-				BiographyOne = "asdf asdf",
-				BiographyTwo = "qwer qwer",
-                ProfilePictureName = "Static_Assets/Cerasinops",
-                Size = 7,
-				OrderInPool = 5
-			}
-		}},
-		{2, new List<Dinosaur>(){
-			new Dinosaur()
-			{
-				Name = "21",
-				Age = "1 billion",
-				BiographyOne = "asdf asdf",
-				BiographyTwo = "qwer qwer",
-                ProfilePictureName = "Static_Assets/Cerasinops",
-                Size = 5,
-				OrderInPool = 1
-			},
-			new Dinosaur()
-			{
-				Name = "22",
-				Age = "1 billion",
-				BiographyOne = "asdf asdf",
-				BiographyTwo = "qwer qwer",
-                ProfilePictureName = "Static_Assets/Cerasinops",
-                Size = 5,
-				OrderInPool = 2
-			},
-			new Dinosaur()
-			{
-				Name = "23",
-				Age = "1 billion",
-				BiographyOne = "asdf asdf",
-				BiographyTwo = "qwer qwer",
-                ProfilePictureName = "Static_Assets/Cerasinops",
-                Size = 5,
-				OrderInPool = 3
-			},
-			new Dinosaur()
-			{
-				Name = "24",
-				Age = "1 billion",
-				BiographyOne = "asdf asdf",
-				BiographyTwo = "qwer qwer",
-                ProfilePictureName = "Static_Assets/Cerasinops",
-                Size = 5,
-				OrderInPool = 4
-			},
-			new Dinosaur()
-			{
-				Name = "25",
-				Age = "1 billion",
-				BiographyOne = "asdf asdf",
-				BiographyTwo = "qwer qwer",
-                ProfilePictureName = "Static_Assets/Cerasinops",
-                Size = 5,
-				OrderInPool = 5
-			}
-		}}
-	};
+	
 }
