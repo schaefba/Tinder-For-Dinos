@@ -69,11 +69,11 @@ public class LevelManager : MonoBehaviour {
 	{
 		var foodText = GameObject.Find("GameStatus/CurrentFood").GetComponent<Text>();
 		var daysSurvived = GameObject.Find("GameStatus/DaysSurvived").GetComponent<Text>();
-		//var numDates = GameObject.Find("GameStatus/NumDates").GetComponent<Text>();
+		var numDates = GameObject.Find("GameStatus/NumDates").GetComponent<Text>();
 
 		foodText.text = "Current Food: " + GM.DaysUntilStarvation.ToString();
 		daysSurvived.text = "Days Survived: " + GM.DaysGoneBy.ToString();
-		//numDates.text = DinosaursInfo.getDinosaursForLevel.FirstOrDefault(x => x
+		numDates.text = "Number of Dates: " + GM.NumOfDates.ToString ();
 	}
 
     public void SetCreated(bool created)
@@ -123,6 +123,7 @@ public class LevelManager : MonoBehaviour {
     public void MatchHandler()
     {
         _outcome = GM.CalculateOutcome(_currentDino);
+		GM.NumOfDates++;
         LoadOutcomeSceneForMatch();
     }
 
