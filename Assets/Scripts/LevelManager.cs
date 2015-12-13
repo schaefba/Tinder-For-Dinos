@@ -50,7 +50,17 @@ public class LevelManager : MonoBehaviour {
 
 		//load next dinosaur profile
 		GM.DaysGoneBy = level;
-		List<Dinosaur> dinosaurList = DinosaursInfo.getDinosaursForLevel(level);
+	    List<Dinosaur> dinosaurList = new List<Dinosaur>();
+
+        if (GM.DaysGoneBy > DinosaursInfo.GetLevelCount())
+	    {
+	        dinosaurList = DinosaursInfo.getDinosaursForLevel(DinosaursInfo.GetLevelCount());
+	    }
+	    else
+	    {
+            dinosaurList = DinosaursInfo.getDinosaursForLevel(level);
+        }
+        
 		_currentDino = dinosaurList.FirstOrDefault ();
 		PVM.LoadProfileFor(_currentDino);
 	}
@@ -88,9 +98,19 @@ public class LevelManager : MonoBehaviour {
 
 	public void NextProfileHandler()
 	{
-		var dinosaurPool = DinosaursInfo.getDinosaursForLevel(GM.DaysGoneBy);
+	    int levelKey;
+        if (GM.DaysGoneBy > DinosaursInfo.GetLevelCount())
+        {
+            levelKey = DinosaursInfo.GetLevelCount();
+        }
+	    else
+        {
+            levelKey = GM.DaysGoneBy;
+
+        }
+        var dinosaurPool = DinosaursInfo.getDinosaursForLevel(levelKey);
 	    GM.NewGame = false;
-		if (_currentDino.OrderInPool >= dinosaurPool.Count ()) {
+		if (_currentDino.OrderInPool >= dinosaurPool.Count ) {
 			GM.UpdateDaysUntilStarvation (-1);
 		} else {
 			int nextIndex = _currentDino.OrderInPool + 1;
