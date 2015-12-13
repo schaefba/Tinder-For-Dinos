@@ -18,7 +18,7 @@ public class DinosaursInfo {
                 Age = "25",
                 BiographyOne = "asdf asdf",
                 BiographyTwo = "qwer qwer",
-                ProfilePictureName = "Static_Assets/Cerasinops",
+                ProfilePictureName = "Static_Assets/Raptor",
                 Size = 5,
                 OrderInPool = 1
             },
@@ -28,7 +28,7 @@ public class DinosaursInfo {
                 Age = "30",
                 BiographyOne = "asdf asdf",
                 BiographyTwo = "qwer qwer",
-                ProfilePictureName = "Static_Assets/Cerasinops",
+                ProfilePictureName = "Static_Assets/Tbone",
                 Size = 2,
                 OrderInPool = 2
             },
@@ -38,7 +38,7 @@ public class DinosaursInfo {
                 Age = "75",
                 BiographyOne = "asdf asdf",
                 BiographyTwo = "qwer qwer",
-                ProfilePictureName = "Static_Assets/Cerasinops",
+                ProfilePictureName = "Static_Assets/Spiky",
                 Size = 3,
                 OrderInPool = 3
             }
@@ -50,7 +50,7 @@ public class DinosaursInfo {
                 Age = "1 billion",
                 BiographyOne = "asdf asdf",
                 BiographyTwo = "qwer qwer",
-                ProfilePictureName = "Static_Assets/Cerasinops",
+                ProfilePictureName = "Static_Assets/TDact",
                 Size = 5,
                 OrderInPool = 1
             },
@@ -60,7 +60,7 @@ public class DinosaursInfo {
                 Age = "1 billion",
                 BiographyOne = "asdf asdf",
                 BiographyTwo = "qwer qwer",
-                ProfilePictureName = "Static_Assets/Cerasinops",
+                ProfilePictureName = "Static_Assets/HumanDressedUp",
                 Size = 5,
                 OrderInPool = 2
             },
@@ -70,7 +70,7 @@ public class DinosaursInfo {
                 Age = "1 billion",
                 BiographyOne = "asdf asdf",
                 BiographyTwo = "qwer qwer",
-                ProfilePictureName = "Static_Assets/Cerasinops",
+                ProfilePictureName = "Static_Assets/Liposaurus",
                 Size = 5,
                 OrderInPool = 3
             }
@@ -82,7 +82,7 @@ public class DinosaursInfo {
                 Age = "38",
                 BiographyOne = "asdf asdf",
                 BiographyTwo = "qwer qwer",
-                ProfilePictureName = "Static_Assets/Cerasinops",
+                ProfilePictureName = "Static_Assets/Random",
                 Size = 4,
                 OrderInPool = 1
             },
@@ -92,7 +92,7 @@ public class DinosaursInfo {
                 Age = "42",
                 BiographyOne = "asdf asdf",
                 BiographyTwo = "qwer qwer",
-                ProfilePictureName = "Static_Assets/Cerasinops",
+                ProfilePictureName = "Static_Assets/Sexy_Woman",
                 Size = 7,
                 OrderInPool = 2
             },
@@ -102,7 +102,7 @@ public class DinosaursInfo {
                 Age = "1 billion",
                 BiographyOne = "asdf asdf",
                 BiographyTwo = "qwer qwer",
-                ProfilePictureName = "Static_Assets/Cerasinops",
+                ProfilePictureName = "Static_Assets/Lisa",
                 Size = 5,
                 OrderInPool = 3
             },
@@ -114,7 +114,7 @@ public class DinosaursInfo {
                 Age = "1 billion",
                 BiographyOne = "asdf asdf",
                 BiographyTwo = "qwer qwer",
-                ProfilePictureName = "Static_Assets/Cerasinops",
+                ProfilePictureName = "Static_Assets/BloodyTRex",
                 Size = 5,
                 OrderInPool = 1
             },
@@ -124,7 +124,7 @@ public class DinosaursInfo {
                 Age = "1 billion",
                 BiographyOne = "asdf asdf",
                 BiographyTwo = "qwer qwer",
-                ProfilePictureName = "Static_Assets/Cerasinops",
+                ProfilePictureName = "Static_Assets/BestFriends",
                 Size = 5,
                 OrderInPool = 2
             },
@@ -134,7 +134,7 @@ public class DinosaursInfo {
                 Age = "1 billion",
                 BiographyOne = "asdf asdf",
                 BiographyTwo = "qwer qwer",
-                ProfilePictureName = "Static_Assets/Cerasinops",
+                ProfilePictureName = "Static_Assets/FatherSon",
                 Size = 5,
                 OrderInPool = 3
             }
