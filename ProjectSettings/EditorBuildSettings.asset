@@ -6,6 +6,10 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/IntroView.unity
+  - enabled: 1
+    path: Assets/Scenes/InstructionView.unity
+  - enabled: 1
     path: Assets/Scenes/AppView.unity
   - enabled: 1
     path: Assets/Scenes/FeedbackView.unity
