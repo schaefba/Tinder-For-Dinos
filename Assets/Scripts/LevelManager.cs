@@ -122,6 +122,7 @@ public class LevelManager : MonoBehaviour {
 
     public void MatchHandler()
     {
+        GM.NewGame = false;
         _outcome = GM.CalculateOutcome(_currentDino);
 		GM.NumOfDates++;
         LoadOutcomeSceneForMatch();
