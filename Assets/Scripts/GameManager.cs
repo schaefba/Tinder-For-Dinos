@@ -64,6 +64,7 @@ public class GameManager {
     {
         _daysUntilStarve = INITIAL_DAYS_UNTIL_STARVE;
         DaysGoneBy = 0;
+		NumOfDates = 0;
         _size = 5;
         NewGame = true;
     }
