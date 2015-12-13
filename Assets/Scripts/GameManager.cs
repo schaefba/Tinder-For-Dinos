@@ -5,15 +5,21 @@ using UnityEngine.SceneManagement;
 
 public class GameManager {
 
-	public const int POSITIVE_STATE = 1;
-	public const int NEUTRAL_STATE = 0;
-	public const int NEGATIVE_STATE = -1;
-	public const int INITIAL_DAYS_UNTIL_STARVE = 4;
+    // Game change states
+    public const int ATE_OTHER = 1;
+    public const int NO_MATCH_FOR_DAY = 0;
+    public const int FAILED_DUE_TO_TIE = -1;
+    public const int GOT_EATEN = -2;
+    public const int STARVED = -3;
+
+    // Initial states
+    public const int INITIAL_DAYS_UNTIL_STARVE = 4;
 
 
 	private int _daysUntilStarve = INITIAL_DAYS_UNTIL_STARVE;
-	public int totalGameDays = 0;
-	private int daysGoneBy = 0;
+	public int TotalGameDays = 0;
+	private int _daysGoneBy = 0;
+    private int _size = 5;
 
 
 	public int DaysUntilStarvation { get { return _daysUntilStarve; } }
@@ -38,15 +44,23 @@ public class GameManager {
 	{
 		_daysUntilStarve += days;
 		LevelManager levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
-		levelManager.LoadOutcomeScene();
+		levelManager.LoadOutcomeSceneForEndOfDay();
 	}
 
 	public void RestartGame() {
 		SceneManager.LoadScene ("OutcomeView", LoadSceneMode.Single);
 	}
 
-    public void CalculateOutcome(Dinosaur currentDino)
+    public int CalculateOutcome(Dinosaur currentDino)
     {
-        
+        if (currentDino.Size > _size)
+        {
+            return GOT_EATEN;
+        }
+        if (currentDino.Size < _size)
+        {
+            return ATE_OTHER;
+        }
+        return FAILED_DUE_TO_TIE;
     }
 }

@@ -30,12 +30,16 @@ public class LevelManager : MonoBehaviour {
 	public void LoadLevel(int level)
 	{
 		PVM = GameObject.Find ("PVM").GetComponent<ProfileViewManager> (); //EventSystem.current.GetComponent<ProfileViewManager> (); //GameObject.Find ("EventSystem").GetComponent<ProfileViewManager> ();
-		GM = GameManager.Instance; 
-		_levelTransitionScreen = GameObject.Find ("LevelTransition");
-		_levelTransitionText = GameObject.Find("LevelTransition/Text").GetComponent<Text>();
-		Button noButton = GameObject.Find ("PhoneScreen/NoButton").GetComponent<Button> ();
-		noButton.onClick.AddListener (() => LoadNextProfile ());
+		GM = GameManager.Instance;
 
+        _levelTransitionScreen = GameObject.Find ("LevelTransition");
+		_levelTransitionText = GameObject.Find("LevelTransition/Text").GetComponent<Text>();
+
+        Button noButton = GameObject.Find ("PhoneScreen/NoButton").GetComponent<Button> ();
+	    Button yesButton = GameObject.Find("PhoneScreen/YesButton").GetComponent<Button>();
+        
+        noButton.onClick.AddListener (() => NextProfileHandler ());
+        yesButton.onClick.AddListener(() => MatchHandler());
 
 		//display text for beginning of level
 		ShowLevelImage ();
@@ -64,7 +68,7 @@ public class LevelManager : MonoBehaviour {
 		_levelTransitionScreen.SetActive (true);
 	}
 
-	public void LoadNextProfile()
+	public void NextProfileHandler()
 	{
 		var dinosaurPool = DinosaursInfo.getDinosaursForLevel(_currentLevel);
 
@@ -78,12 +82,13 @@ public class LevelManager : MonoBehaviour {
 		}
 	}
 
-    public void LoadMatch()
+    public void MatchHandler()
     {
-        GameManager.Instance.CalculateOutcome(_currentDino);
+        _outcome = GM.CalculateOutcome(_currentDino);
+        LoadOutcomeSceneForMatch();
     }
 
-	public void OutcomeScreenHandler()
+    public void OutcomeScreenHandler()
 	{
 		if (GM.DaysUntilStarvation <= 0) {
 			GM.RestartGame ();
@@ -98,16 +103,24 @@ public class LevelManager : MonoBehaviour {
 		outcomeText.text = outcomeString;
 	}
 
-	public void LoadOutcomeScene()
+    public void LoadOutcomeSceneForMatch()
+    {
+        SceneManager.LoadScene("OutcomeView", LoadSceneMode.Single);
+
+        //calculate outcome
+        //load specific scene based on outcome info
+    }
+
+    public void LoadOutcomeSceneForEndOfDay()
 	{
 		var daysTillStarvation = GameManager.Instance.DaysUntilStarvation;
 		SceneManager.LoadScene ("OutcomeView", LoadSceneMode.Single);
 
 		//after scene is loaded - populate it with outcome text
 		if (daysTillStarvation <= 0) {
-			_outcome = -1;
+			_outcome = GameManager.STARVED;
 		} else {
-			_outcome = 1;
+			_outcome = GameManager.NO_MATCH_FOR_DAY;
 		}
 
 		//calculate outcome
@@ -117,6 +130,7 @@ public class LevelManager : MonoBehaviour {
 	private void OnLevelWasLoaded(int level) {
 		if (level == SceneManager.GetSceneByName ("OutcomeView").buildIndex) {
 			LoadOutcomeText (_outcome);
+		    LoadStatusText(_outcome);
 			Button okButton = GameObject.Find ("FullCanvas/Button").GetComponent<Button> ();
 			okButton.onClick.AddListener(() => OutcomeScreenHandler());
 		}
@@ -126,5 +140,10 @@ public class LevelManager : MonoBehaviour {
 		}
 	}
 
-	
+    private void LoadStatusText(int outcome)
+    {
+        string statusString = OutcomeStrings.getStatusChangeText(outcome);
+        Text statusText = GameObject.Find("FullCanvas/StateChangeText").GetComponent<Text>();
+        statusText.text = statusString;
+    }
 }
