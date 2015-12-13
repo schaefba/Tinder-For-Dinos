@@ -19,6 +19,7 @@ public class GameManager {
 	private int _daysUntilStarve = INITIAL_DAYS_UNTIL_STARVE;
 //	public int TotalGameDays;
     public int DaysGoneBy { get; set; }
+	public int NumOfDates { get; set; }
     private int _size = 5;
     public bool NewGame = true;
 

@@ -56,7 +56,7 @@ public class DinosaursInfo {
                 BiographyOne = "I like donating to charities!",
                 BiographyTwo = "I love vegetables",
                 ProfilePictureName = "Static_Assets/TheGoodDinosaur",
-                Size = 5,
+                Size = 1,
                 OrderInPool = 1
             },
             new Dinosaur()
@@ -66,7 +66,7 @@ public class DinosaursInfo {
                 BiographyOne = "I like to lift!",
                 BiographyTwo = "I'm an alpha saur!",
                 ProfilePictureName = "Static_Assets/HumanDressedUp",
-                Size = 5,
+                Size = 2,
                 OrderInPool = 2
             },
             new Dinosaur()
@@ -76,7 +76,7 @@ public class DinosaursInfo {
                 BiographyOne = "Popcorn and pizza are my favorite things!",
                 BiographyTwo = "I put the 'Ass' in 'Jurassic'",
                 ProfilePictureName = "Static_Assets/Liposaurus",
-                Size = 5,
+                Size = 50,
                 OrderInPool = 3
             }
         }},
@@ -88,7 +88,7 @@ public class DinosaursInfo {
                 BiographyOne = "I'm a chicken!",
                 BiographyTwo = "Bawk Bawk!!!",
                 ProfilePictureName = "Static_Assets/Rebecca",
-                Size = 4,
+                Size = 10,
                 OrderInPool = 1
             },
             new Dinosaur()
@@ -98,7 +98,7 @@ public class DinosaursInfo {
                 BiographyOne = "Love to dance",
                 BiographyTwo = "Looking for a hot bod!",
                 ProfilePictureName = "Static_Assets/Sexy_Woman",
-                Size = 7,
+                Size = 2,
                 OrderInPool = 2
             },
             new Dinosaur()
@@ -115,8 +115,8 @@ public class DinosaursInfo {
         {4, new List<Dinosaur>(){
             new Dinosaur()
             {
-                Name = "41",
-                Age = "1 billion",
+                Name = "Red Rover",
+                Age = "156,411",
                 BiographyOne = "Likes: Frozen Yogurt, Dancing",
                 BiographyTwo = "Looking for someone who wants a good time",
                 ProfilePictureName = "Static_Assets/BloodyTRex",
@@ -130,7 +130,7 @@ public class DinosaursInfo {
                 BiographyOne = "I love hanging out with my vegan friends!",
                 BiographyTwo = "I like going on long runs!",
                 ProfilePictureName = "Static_Assets/BestFriends",
-                Size = 5,
+                Size = 89,
                 OrderInPool = 2
             },
             new Dinosaur()
@@ -140,7 +140,7 @@ public class DinosaursInfo {
                 BiographyOne = "I have one son! He's the joy of my life!",
                 BiographyTwo = "I'm a lumberjack on the side.",
                 ProfilePictureName = "Static_Assets/FatherSon",
-                Size = 5,
+                Size = 1,
                 OrderInPool = 3
             }
         }},
@@ -148,10 +148,10 @@ public class DinosaursInfo {
         {
             new Dinosaur()
             {
-                Name = "Pat",
+                Name = "Barney",
                 Age = "27",
-                BiographyOne = "Likes: Frozen Yogurt, Dancing",
-                BiographyTwo = "Looking for someone who wants a good time",
+                BiographyOne = "I LOVE YOU!",
+                BiographyTwo = "YOU LOVE ME!",
                 ProfilePictureName = "Static_Assets/barney-love",
                 Size = 5,
                 OrderInPool = 1
