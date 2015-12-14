@@ -443,10 +443,17 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: But on the 7th day of your quest for love - just as you thought you found
+  m_Text: 'But on the 7th day of your quest for love - just as you thought you found
     "the one" - an asteroid came down. Although you had become the king of the dinosaurs
     - the largest and most fierce of dinosaurs - there was nothing you could do in
     the face of cosmic forces.
+
+
+
+    Thanks for playing Tinder for Dinosaurs!
+
+
+    [Press ''r'' to play again from the beginning]'
 --- !u!222 &2121144391
 CanvasRenderer:
   m_ObjectHideFlags: 0

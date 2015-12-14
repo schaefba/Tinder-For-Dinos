@@ -119,7 +119,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 206, y: -128}
-  m_SizeDelta: {x: 50, y: 50}
+  m_SizeDelta: {x: 100, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &209698356
 MonoBehaviour:
@@ -347,9 +347,9 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: "Its the Cretaceous period and dinosaurs everywhere are having a hard time
     getting a date. But luckily for you, you've found Lizrd. The hottest new dating
-    app for dinos.  \n\nYou realized that this would be a great way to find a meal.
-    If you could find smaller, weaker dinosaurs in Lizrd, you could meet up with them
-    and munch them up."
+    app for dinos.  \n\nYou realized that this would actually be a great way to find
+    a meal. If you could find smaller, weaker dinosaurs in Lizrd, you could meet up
+    with them and munch them up."
 --- !u!222 &937845318
 CanvasRenderer:
   m_ObjectHideFlags: 0

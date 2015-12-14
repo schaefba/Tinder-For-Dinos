@@ -12,7 +12,8 @@ public class IntroManager : MonoBehaviour
     private List<string> sceneList = new List<string>()
     {
         "IntroView",
-        "InstructionView"
+        "InstructionView",
+        "Instruction2View"
     };
 
 	// Use this for initialization
