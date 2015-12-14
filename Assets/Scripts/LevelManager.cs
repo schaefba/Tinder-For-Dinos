@@ -175,16 +175,43 @@ public class LevelManager : MonoBehaviour {
 		} else {
 			_outcome = GameManager.NO_MATCH_FOR_DAY;
 		}
-
-		//calculate outcome
-		//load specific scene based on outcome info
 	}
 
 	private void OnLevelWasLoaded(int level) {
 		if (level == SceneManager.GetSceneByName ("OutcomeView").buildIndex) {
 			LoadOutcomeText (_outcome);
 		    LoadStatusText(_outcome);
+
+
+			Animator dino1Anim = GameObject.Find ("Dino1").GetComponent<Animator> ();
+			Animator dino2Anim = GameObject.Find ("Dino2").GetComponent<Animator> ();
+			SpriteRenderer dino1Sprite = GameObject.Find ("Dino1").GetComponent<SpriteRenderer> ();
+			SpriteRenderer dino2Sprite = GameObject.Find ("Dino2").GetComponent<SpriteRenderer> ();
 			Button okButton = GameObject.Find ("FullCanvas/Button").GetComponent<Button> ();
+
+
+			dino1Sprite.enabled = true;
+			dino2Sprite.enabled = true;
+
+			if (_outcome == GameManager.ATE_OTHER) {
+				dino1Anim.SetTrigger ("Attacking");
+				dino2Sprite.flipX = true;
+			} else if (_outcome == GameManager.GOT_EATEN) {
+				dino2Anim.SetTrigger ("Attacking");
+				dino1Sprite.flipX = false;
+			} else if (_outcome == GameManager.FAILED_DUE_TO_TIE) {
+				dino1Sprite.flipX = false;
+				dino2Sprite.flipX = true;
+			} else if (_outcome == GameManager.STARVED) {
+				dino1Sprite.transform.Rotate (Vector3.forward * 90);
+				dino1Anim.enabled = false;
+				dino2Sprite.enabled = false;
+			} else {
+				dino1Sprite.enabled = false;
+				dino2Sprite.enabled = false;
+			}
+
+
 			okButton.onClick.AddListener(() => OutcomeScreenHandler());
 		}
 
