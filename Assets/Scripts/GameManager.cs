@@ -51,7 +51,7 @@ public class GameManager {
 
 	public void RestartGame()
 	{
-	    GameObject levelManager = GameObject.Find("LevelManager").gameObject;
+	    GameObject levelManager = GameObject.Find("LevelManager");//.gameObject;
 	    LevelManager levelManagerScript = levelManager.GetComponent<LevelManager>();
 	    levelManagerScript.SetCreated(false);
 	    GameObject.DestroyImmediate(levelManager);

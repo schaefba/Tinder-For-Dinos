@@ -211,7 +211,14 @@ public class LevelManager : MonoBehaviour {
 				dino2Sprite.enabled = false;
 			}
 
-
+		    if (_outcome == GameManager.STARVED || _outcome == GameManager.GOT_EATEN)
+		    {
+		        okButton.GetComponentInChildren<Text>().text = "Restart";
+		    }
+		    else
+		    {
+                okButton.GetComponentInChildren<Text>().text = "Ok";
+            }
 			okButton.onClick.AddListener(() => OutcomeScreenHandler());
 		}
 
