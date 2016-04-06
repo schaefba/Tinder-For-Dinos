@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class Zone : MonoBehaviour {
 
-	public GameObject[] neighbors;
+	public List<Zone> neighbors;
 
 	// Use this for initialization
 	void Start () {
