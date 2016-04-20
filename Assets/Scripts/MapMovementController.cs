@@ -26,7 +26,8 @@ public class MapMovementController : MonoBehaviour {
 //		if (Input.GetKeyDown(KeyCode.R)) {
 //			gameManager.RestartGame ();
 //		}
-	    if (Vector3.Distance(characterBody.transform.position, _moveToNode.transform.position) > .01f)
+
+        if (Vector2.Distance(characterBody.transform.position, _moveToNode.transform.position) > .01f)
 	    {
 	        Vector3 newCharacterPosition = new Vector3(_moveToNode.transform.position.x, _moveToNode.transform.position.y,-1);
 	        characterBody.transform.position = Vector3.MoveTowards(characterBody.transform.position, newCharacterPosition,5f*Time.deltaTime);
@@ -43,13 +44,13 @@ public class MapMovementController : MonoBehaviour {
 
 	public void moveToNode(GameObject moveToNode)
 	{
+	    Zone moveToZone = moveToNode.GetComponent<Zone>();
 
+	    if (currentZone.neighbors.Contains(moveToZone))
+	    {
+            _moveToNode = moveToNode;
+	    }
 	    
-        _moveToNode = moveToNode;
         Debug.Log("Moveeeee");
-	    
-        
-		
-		
-	}
+    }
 }
