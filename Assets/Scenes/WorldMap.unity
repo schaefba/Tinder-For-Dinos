@@ -278,7 +278,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22414928, guid: c32c3b93268653f49904a278838ad145, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 22414928, guid: c32c3b93268653f49904a278838ad145, type: 2}
       propertyPath: m_LocalRotation.x
@@ -351,6 +351,10 @@ Prefab:
     - target: {fileID: 157336, guid: c32c3b93268653f49904a278838ad145, type: 2}
       propertyPath: m_Name
       value: Zone2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11498886, guid: c32c3b93268653f49904a278838ad145, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: EngageNode
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c32c3b93268653f49904a278838ad145, type: 2}
@@ -555,7 +559,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22414928, guid: c32c3b93268653f49904a278838ad145, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 22414928, guid: c32c3b93268653f49904a278838ad145, type: 2}
       propertyPath: m_LocalRotation.x
@@ -633,6 +637,10 @@ Prefab:
       propertyPath: neighbors.Array.data[1]
       value: 
       objectReference: {fileID: 1843784408}
+    - target: {fileID: 11498886, guid: c32c3b93268653f49904a278838ad145, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: EngageNode
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c32c3b93268653f49904a278838ad145, type: 2}
   m_IsPrefabParent: 0
@@ -741,6 +749,7 @@ GameObject:
   - 212: {fileID: 780018760}
   - 114: {fileID: 780018762}
   - 50: {fileID: 780018763}
+  - 114: {fileID: 780018764}
   m_Layer: 0
   m_Name: Dino
   m_TagString: Player
@@ -819,6 +828,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &780018764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 780018759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 140ec4158cba44cc98adcf5d877e35a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &818152734
 GameObject:
   m_ObjectHideFlags: 0

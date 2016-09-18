@@ -21,10 +21,49 @@ public class LevelManager : MonoBehaviour {
 		if (!_created) {
 			DontDestroyOnLoad (this.gameObject);
 			_created = true;
-			LoadLevel (1);
+			//LoadLevel (1);
 		} else {
 			DestroyImmediate(this.gameObject);
 		}
+	}
+
+	public void LoadProfileViewForZone(Zone zone) {
+
+		PVM = GameObject.Find ("PVM").GetComponent<ProfileViewManager> (); //EventSystem.current.GetComponent<ProfileViewManager> (); //GameObject.Find ("EventSystem").GetComponent<ProfileViewManager> ();
+		//GM = GameManager.Instance;
+
+		_levelTransitionScreen = GameObject.Find ("LevelTransition");
+		_levelTransitionText = GameObject.Find("LevelTransition/Text").GetComponent<Text>();
+
+		Button noButton = GameObject.Find ("PhoneScreen/NoButton").GetComponent<Button> ();
+		Button yesButton = GameObject.Find("PhoneScreen/YesButton").GetComponent<Button>();
+
+		noButton.onClick.AddListener (() => NextProfileHandler ());
+		yesButton.onClick.AddListener(() => MatchHandler());
+
+		//display text for beginning of level
+		ShowLevelImage ();
+		UpdateZoneText (zone.name);
+		Invoke ("HideLevelImage", 2f);
+
+		UpdateGameStatusText ();
+
+		//load next dinosaur profile
+		//GM.DaysGoneBy = level;
+		List<Dinosaur> dinosaurList = new List<Dinosaur>();
+
+//		if (GM.DaysGoneBy > DinosaursInfo.GetLevelCount())
+//		{
+//			dinosaurList = DinosaursInfo.getDinosaursForLevel(DinosaursInfo.GetLevelCount());
+//		}
+//		else
+//		{
+//			dinosaurList = DinosaursInfo.getDinosaursForLevel(level);
+//		}
+		dinosaurList = DinosaursInfo.getDinosaursForZone(zone);
+
+		_currentDino = dinosaurList.FirstOrDefault ();
+		PVM.LoadProfileFor(_currentDino);
 	}
 
 	public void LoadLevel(int level)
@@ -84,6 +123,10 @@ public class LevelManager : MonoBehaviour {
 	private void HideLevelImage()
 	{
 		_levelTransitionScreen.SetActive (false);
+	}
+
+	private void UpdateZoneText(string zoneName) {
+		_levelTransitionText.text = "Day " + zoneName;
 	}
 
 	private void UpdateLevelText(int level)

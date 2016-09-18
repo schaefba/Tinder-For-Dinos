@@ -9,6 +9,17 @@ public class MapMovementController : MonoBehaviour {
 	private Rigidbody2D characterBody;
    
     private GameObject _moveToNode;
+	private static bool _created = false;
+
+	void Awake() {
+		if (!_created) {
+			DontDestroyOnLoad (this.gameObject);
+			_created = true;
+			//LoadLevel (1);
+		} else {
+			DestroyImmediate(this.gameObject);
+		}
+	}
 
     // Use this for initialization
 	void Start () {
@@ -42,15 +53,32 @@ public class MapMovementController : MonoBehaviour {
 
 	}
 
-	public void moveToNode(GameObject moveToNode)
+	public void EngageNode(GameObject moveToNode)
 	{
 	    Zone moveToZone = moveToNode.GetComponent<Zone>();
 
-	    if (currentZone.neighbors.Contains(moveToZone))
-	    {
-            _moveToNode = moveToNode;
-	    }
+		if (moveToZone == currentZone) { 
+
+			LevelManager levelManager = gameObject.GetComponent<LevelManager> ();
+			Debug.Log("Same node");
+			levelManager.LoadProfileViewForZone (moveToZone);
+			//Debug.Log("Same node");
+
+		} else {
+
+			if (currentZone.neighbors.Contains(moveToZone))
+			{
+				_moveToNode = moveToNode;
+			}
+		}
+
+	    
 	    
         Debug.Log("Moveeeee");
     }
+
+	public void LoadArea(Zone zoneToLoad) {
+
+
+	}
 }
