@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -9,9 +10,9 @@ public class DinosaursInfo {
         return _levelToDinosaurs[level];
     }
 
-	public static List<Dinosaur> getDinosaursForZone(Zone zone) {
+	public static List<Dinosaur> getDinosaursForZoneName(string zoneName) {
 
-		return _zoneToDinosaurs[zone.gameObject.name];
+        return _zoneToDinosaurs[zoneName];
 	}
 
     public static int GetLevelCount()

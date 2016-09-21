@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections;
@@ -16,6 +17,7 @@ public class LevelManager : MonoBehaviour {
 	private Text _levelTransitionText;
 	private int _outcome;
 	private static bool _created = false;
+    private string _currentZoneName;
 
 	void Awake() {
 		if (!_created) {
@@ -27,43 +29,52 @@ public class LevelManager : MonoBehaviour {
 		}
 	}
 
-	public void LoadProfileViewForZone(Zone zone) {
+    public void setCurrentZone(Zone zone)
+    {
+        _currentZoneName = zone.gameObject.name;
+    }
 
-		PVM = GameObject.Find ("PVM").GetComponent<ProfileViewManager> (); //EventSystem.current.GetComponent<ProfileViewManager> (); //GameObject.Find ("EventSystem").GetComponent<ProfileViewManager> ();
-		//GM = GameManager.Instance;
+	public void LoadProfileViewForCurrentZone() {
 
-		_levelTransitionScreen = GameObject.Find ("LevelTransition");
-		_levelTransitionText = GameObject.Find("LevelTransition/Text").GetComponent<Text>();
+	    if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("AppView"))
+	    {
+            PVM = GameObject.Find("PVM").GetComponent<ProfileViewManager>(); //EventSystem.current.GetComponent<ProfileViewManager> (); //GameObject.Find ("EventSystem").GetComponent<ProfileViewManager> ();
+            //GM = GameManager.Instance;
 
-		Button noButton = GameObject.Find ("PhoneScreen/NoButton").GetComponent<Button> ();
-		Button yesButton = GameObject.Find("PhoneScreen/YesButton").GetComponent<Button>();
+            _levelTransitionScreen = GameObject.Find("LevelTransition");
+            _levelTransitionText = GameObject.Find("LevelTransition/Text").GetComponent<Text>();
 
-		noButton.onClick.AddListener (() => NextProfileHandler ());
-		yesButton.onClick.AddListener(() => MatchHandler());
+            Button noButton = GameObject.Find("PhoneScreen/NoButton").GetComponent<Button>();
+            Button yesButton = GameObject.Find("PhoneScreen/YesButton").GetComponent<Button>();
 
-		//display text for beginning of level
-		ShowLevelImage ();
-		UpdateZoneText (zone.name);
-		Invoke ("HideLevelImage", 2f);
+            noButton.onClick.AddListener(() => NextProfileHandler());
+            yesButton.onClick.AddListener(() => MatchHandler());
 
-		UpdateGameStatusText ();
+            //display text for beginning of level
+            ShowLevelImage();
+            UpdateZoneText(_currentZoneName);
+            Invoke("HideLevelImage", 2f);
 
-		//load next dinosaur profile
-		//GM.DaysGoneBy = level;
-		List<Dinosaur> dinosaurList = new List<Dinosaur>();
+            UpdateGameStatusText();
 
-//		if (GM.DaysGoneBy > DinosaursInfo.GetLevelCount())
-//		{
-//			dinosaurList = DinosaursInfo.getDinosaursForLevel(DinosaursInfo.GetLevelCount());
-//		}
-//		else
-//		{
-//			dinosaurList = DinosaursInfo.getDinosaursForLevel(level);
-//		}
-		dinosaurList = DinosaursInfo.getDinosaursForZone(zone);
+            //load next dinosaur profile
+            //GM.DaysGoneBy = level;
+            List<Dinosaur> dinosaurList = new List<Dinosaur>();
 
-		_currentDino = dinosaurList.FirstOrDefault ();
-		PVM.LoadProfileFor(_currentDino);
+            //		if (GM.DaysGoneBy > DinosaursInfo.GetLevelCount())
+            //		{
+            //			dinosaurList = DinosaursInfo.getDinosaursForLevel(DinosaursInfo.GetLevelCount());
+            //		}
+            //		else
+            //		{
+            //			dinosaurList = DinosaursInfo.getDinosaursForLevel(level);
+            //		}
+            dinosaurList = DinosaursInfo.getDinosaursForZoneName(_currentZoneName);
+
+            _currentDino = dinosaurList.FirstOrDefault();
+            PVM.LoadProfileFor(_currentDino);
+	    }
+		
 	}
 
 	public void LoadLevel(int level)
@@ -110,9 +121,9 @@ public class LevelManager : MonoBehaviour {
 		var daysSurvived = GameObject.Find("GameStatus/DaysSurvived").GetComponent<Text>();
 		var numDates = GameObject.Find("GameStatus/NumDates").GetComponent<Text>();
 
-		foodText.text = "Current Food: " + GM.DaysUntilStarvation.ToString();
-		daysSurvived.text = "Days Survived: " + GM.DaysGoneBy.ToString();
-		numDates.text = "Number of Dates: " + GM.NumOfDates.ToString ();
+		//foodText.text = "Current Food: " + GM.DaysUntilStarvation.ToString();
+		//daysSurvived.text = "Days Survived: " + GM.DaysGoneBy.ToString();
+		//numDates.text = "Number of Dates: " + GM.NumOfDates.ToString ();
 	}
 
     public void SetCreated(bool created)

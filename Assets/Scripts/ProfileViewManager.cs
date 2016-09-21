@@ -12,9 +12,20 @@ public class ProfileViewManager : MonoBehaviour {
 	private Text biographyTwo;
 	private Image profilePicture;
 
+    private static bool _created;
+
 	public void Awake()
 	{
-		
+        if (!_created)
+        {
+            DontDestroyOnLoad(gameObject);
+            _created = true;
+            //LoadLevel (1);
+        }
+        else
+        {
+            DestroyImmediate(gameObject);
+        }
 	}
 		
 	public void LoadProfileFor(Dinosaur dino)
