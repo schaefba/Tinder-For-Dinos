@@ -19,6 +19,9 @@ public class LevelManager : MonoBehaviour {
 	private static bool _created = false;
     private string _currentZoneName;
 
+    private const string NO_BUTTON_PATH = "PhoneScreen/MatchView/NoButton";
+    private const string YES_BUTTON_PATH = "PhoneScreen/MatchView/YesButton";
+
 	void Awake() {
 		if (!_created) {
 			DontDestroyOnLoad (this.gameObject);
@@ -44,8 +47,8 @@ public class LevelManager : MonoBehaviour {
             _levelTransitionScreen = GameObject.Find("LevelTransition");
             _levelTransitionText = GameObject.Find("LevelTransition/Text").GetComponent<Text>();
 
-            Button noButton = GameObject.Find("PhoneScreen/NoButton").GetComponent<Button>();
-            Button yesButton = GameObject.Find("PhoneScreen/YesButton").GetComponent<Button>();
+            Button noButton = GameObject.Find(NO_BUTTON_PATH).GetComponent<Button>();
+            Button yesButton = GameObject.Find(YES_BUTTON_PATH).GetComponent<Button>();
 
             noButton.onClick.AddListener(() => NextProfileHandler());
             yesButton.onClick.AddListener(() => MatchHandler());
@@ -85,8 +88,8 @@ public class LevelManager : MonoBehaviour {
         _levelTransitionScreen = GameObject.Find ("LevelTransition");
 		_levelTransitionText = GameObject.Find("LevelTransition/Text").GetComponent<Text>();
 
-        Button noButton = GameObject.Find ("PhoneScreen/NoButton").GetComponent<Button> ();
-	    Button yesButton = GameObject.Find("PhoneScreen/YesButton").GetComponent<Button>();
+        Button noButton = GameObject.Find (NO_BUTTON_PATH).GetComponent<Button> ();
+	    Button yesButton = GameObject.Find(YES_BUTTON_PATH).GetComponent<Button>();
         
         noButton.onClick.AddListener (() => NextProfileHandler ());
         yesButton.onClick.AddListener(() => MatchHandler());
@@ -276,9 +279,9 @@ public class LevelManager : MonoBehaviour {
 			okButton.onClick.AddListener(() => OutcomeScreenHandler());
 		}
 
-		if (level == SceneManager.GetSceneByName ("AppView").buildIndex && !GM.NewGame) {
+		/*if (level == SceneManager.GetSceneByName ("AppView").buildIndex && !GM.NewGame) {
 			LoadLevel ((int)GM.DaysGoneBy + 1);
-		}
+		}*/
 	}
 
     private void LoadStatusText(int outcome)
