@@ -9,11 +9,13 @@ public class MapMovementController : MonoBehaviour
     
     //public Zone startZone;
 	public Zone currentZone; 
+	private string _currentZoneName;
 
 	private Rigidbody2D characterBody;
     
    
     private GameObject _moveToNode;
+	private string _moveToNodeName;
 	private static bool _created = false;
     private LevelManager _levelManager;
 
@@ -31,10 +33,12 @@ public class MapMovementController : MonoBehaviour
 	void Start () {
 		//currentZone = startZone;
 		currentZone = GameObject.Find("StartZone").GetComponent<Zone>();
+		_currentZoneName = currentZone.name;
         characterBody = gameObject.GetComponent<Rigidbody2D>();
         Vector3 newCharacterPosition = new Vector3(currentZone.transform.position.x, currentZone.transform.position.y, -1);
         characterBody.transform.position = newCharacterPosition;
 	    _moveToNode = currentZone.gameObject;
+		_moveToNodeName = _moveToNode.name;
 
         _levelManager = gameObject.GetComponent<LevelManager>();
 
@@ -49,6 +53,10 @@ public class MapMovementController : MonoBehaviour
 //		}
 	    if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("WorldMap"))
 	    {
+
+			_moveToNode = GetNodeForName (_moveToNodeName);
+			currentZone = GetNodeForName (_currentZoneName).GetComponent<Zone>();
+
             if (Vector2.Distance(characterBody.transform.position, _moveToNode.transform.position) > .01f)
             {
                 Vector2 newCharacterPosition = new Vector2(_moveToNode.transform.position.x, _moveToNode.transform.position.y);
@@ -59,6 +67,7 @@ public class MapMovementController : MonoBehaviour
             else
             {
                 currentZone = _moveToNode.GetComponent<Zone>();
+				_currentZoneName = currentZone.name;
             }
 	    }
         
@@ -82,6 +91,7 @@ public class MapMovementController : MonoBehaviour
 			if (currentZone.neighbors.Contains(moveToZone))
 			{
 				_moveToNode = moveToNode;
+				_moveToNodeName = _moveToNode.name;
 			}
 		}
 
@@ -89,6 +99,11 @@ public class MapMovementController : MonoBehaviour
 	    
         Debug.Log("Moveeeee");
     }
+
+	public GameObject GetNodeForName(string nodeName) {
+
+		return GameObject.Find (nodeName);
+	}
 
 	public void LoadArea(Zone zoneToLoad) {
 
