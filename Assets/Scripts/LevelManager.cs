@@ -19,8 +19,14 @@ public class LevelManager : MonoBehaviour {
 	private static bool _created = false;
     private string _currentZoneName;
 
+	private List<Dinosaur> _dinosaurList;
+
     private const string NO_BUTTON_PATH = "PhoneScreen/MatchView/NoButton";
     private const string YES_BUTTON_PATH = "PhoneScreen/MatchView/YesButton";
+
+	public GameObject player;
+	private PlayerInfo _playerInfo;
+	private PlayerHealth _playerHealth;
 
 	void Awake() {
 		if (!_created) {
@@ -30,6 +36,12 @@ public class LevelManager : MonoBehaviour {
 		} else {
 			DestroyImmediate(this.gameObject);
 		}
+	}
+
+	void Start() {
+
+		_playerInfo = player.GetComponent<PlayerInfo> ();
+		_playerHealth = player.GetComponent<PlayerHealth> ();
 	}
 
     public void setCurrentZone(Zone zone)
@@ -62,7 +74,7 @@ public class LevelManager : MonoBehaviour {
 
             //load next dinosaur profile
             //GM.DaysGoneBy = level;
-            List<Dinosaur> dinosaurList = new List<Dinosaur>();
+            //_dinosaurList = new List<Dinosaur>();
 
             //		if (GM.DaysGoneBy > DinosaursInfo.GetLevelCount())
             //		{
@@ -72,51 +84,53 @@ public class LevelManager : MonoBehaviour {
             //		{
             //			dinosaurList = DinosaursInfo.getDinosaursForLevel(level);
             //		}
-            dinosaurList = DinosaursInfo.getDinosaursForZoneName(_currentZoneName);
+            _dinosaurList = DinosaursInfo.getDinosaursForZoneName(_currentZoneName);
+            _currentDino = _dinosaurList.FirstOrDefault();
 
-            _currentDino = dinosaurList.FirstOrDefault();
+			_dinosaurList.Remove (_currentDino);
+
             PVM.LoadProfileFor(_currentDino);
 	    }
 		
 	}
 
-	public void LoadLevel(int level)
-	{
-		PVM = GameObject.Find ("PVM").GetComponent<ProfileViewManager> (); //EventSystem.current.GetComponent<ProfileViewManager> (); //GameObject.Find ("EventSystem").GetComponent<ProfileViewManager> ();
-		GM = GameManager.Instance;
-
-        _levelTransitionScreen = GameObject.Find ("LevelTransition");
-		_levelTransitionText = GameObject.Find("LevelTransition/Text").GetComponent<Text>();
-
-        Button noButton = GameObject.Find (NO_BUTTON_PATH).GetComponent<Button> ();
-	    Button yesButton = GameObject.Find(YES_BUTTON_PATH).GetComponent<Button>();
-        
-        noButton.onClick.AddListener (() => NextProfileHandler ());
-        yesButton.onClick.AddListener(() => MatchHandler());
-
-		//display text for beginning of level
-		ShowLevelImage ();
-		UpdateLevelText (level);
-		Invoke ("HideLevelImage", 2f);
-
-		UpdateGameStatusText ();
-
-		//load next dinosaur profile
-		GM.DaysGoneBy = level;
-	    List<Dinosaur> dinosaurList = new List<Dinosaur>();
-
-        if (GM.DaysGoneBy > DinosaursInfo.GetLevelCount())
-	    {
-	        dinosaurList = DinosaursInfo.getDinosaursForLevel(DinosaursInfo.GetLevelCount());
-	    }
-	    else
-	    {
-            dinosaurList = DinosaursInfo.getDinosaursForLevel(level);
-        }
-        
-		_currentDino = dinosaurList.FirstOrDefault ();
-		PVM.LoadProfileFor(_currentDino);
-	}
+//	public void LoadLevel(int level)
+//	{
+//		PVM = GameObject.Find ("PVM").GetComponent<ProfileViewManager> (); //EventSystem.current.GetComponent<ProfileViewManager> (); //GameObject.Find ("EventSystem").GetComponent<ProfileViewManager> ();
+//		GM = GameManager.Instance;
+//
+//        _levelTransitionScreen = GameObject.Find ("LevelTransition");
+//		_levelTransitionText = GameObject.Find("LevelTransition/Text").GetComponent<Text>();
+//
+//        Button noButton = GameObject.Find (NO_BUTTON_PATH).GetComponent<Button> ();
+//	    Button yesButton = GameObject.Find(YES_BUTTON_PATH).GetComponent<Button>();
+//        
+//        noButton.onClick.AddListener (() => NextProfileHandler ());
+//        yesButton.onClick.AddListener(() => MatchHandler());
+//
+//		//display text for beginning of level
+//		ShowLevelImage ();
+//		UpdateLevelText (level);
+//		Invoke ("HideLevelImage", 2f);
+//
+//		UpdateGameStatusText ();
+//
+//		//load next dinosaur profile
+//		//GM.DaysGoneBy = level;
+//		_dinosaurList = new List<Dinosaur>();
+//
+////        if (GM.DaysGoneBy > DinosaursInfo.GetLevelCount())
+////	    {
+////	        dinosaurList = DinosaursInfo.getDinosaursForLevel(DinosaursInfo.GetLevelCount());
+////	    }
+////	    else
+////	    {
+////            dinosaurList = DinosaursInfo.getDinosaursForLevel(level);
+////        }
+//        
+//		_currentDino = _dinosaurList.FirstOrDefault ();
+//		PVM.LoadProfileFor(_currentDino);
+//	}
 
 	private void UpdateGameStatusText()
 	{
@@ -155,41 +169,41 @@ public class LevelManager : MonoBehaviour {
 
 	public void NextProfileHandler()
 	{
-	    int levelKey;
-        if (GM.DaysGoneBy > DinosaursInfo.GetLevelCount())
-        {
-            levelKey = DinosaursInfo.GetLevelCount();
-        }
-	    else
-        {
-            levelKey = GM.DaysGoneBy;
 
-        }
-        var dinosaurPool = DinosaursInfo.getDinosaursForLevel(levelKey);
-	    GM.NewGame = false;
-		if (_currentDino.OrderInPool >= dinosaurPool.Count ) {
-			GM.UpdateDaysUntilStarvation (-1);
+		if (_dinosaurList.Count == 0) {
+
+			// End of level handling
 		} else {
-			int nextIndex = _currentDino.OrderInPool + 1;
-			Dinosaur nextDino = dinosaurPool.FirstOrDefault (x => x.OrderInPool == nextIndex);
-			_currentDino = nextDino;
-			PVM.LoadProfileFor (nextDino);
+
+			_currentDino = _dinosaurList.FirstOrDefault();
+			_dinosaurList.Remove (_currentDino);
+			//_currentDino = nextDino;
+			PVM.LoadProfileFor (_currentDino);
 		}
+			
 	}
 
     public void MatchHandler()
     {
-        GM.NewGame = false;
-        _outcome = GM.CalculateOutcome(_currentDino);
-		GM.NumOfDates++;
-        if (GM.DaysGoneBy >= DinosaursInfo.GetLevelCount())
-        {
-            LoadEndingScene();
-        }
-        else
-        {
-            LoadOutcomeSceneForMatch();
-        }
+		if (_currentDino.Size > _playerInfo.GetSize ()) {
+
+			_playerHealth.DecreaseHealthBy (10);
+			_outcome = GameManager.GOT_DEFEATED;
+			// lose
+		} else {
+
+			_playerHealth.IncreaseHealthBy (10); 
+			_outcome = GameManager.DEFEATED_OTHER;
+			// win
+		}
+
+		LoadOutcomeSceneForMatch ();
+
+//        GM.NewGame = false;
+//        _outcome = GM.CalculateOutcome(_currentDino);
+//
+//
+//       	LoadOutcomeSceneForMatch();
         
     }
 
@@ -200,11 +214,13 @@ public class LevelManager : MonoBehaviour {
 
     public void OutcomeScreenHandler()
 	{
-		if ((GM.DaysUntilStarvation <= 0) || (_outcome == GameManager.GOT_EATEN)) {
-			GM.RestartGame ();
-		} else {
-			SceneManager.LoadScene ("AppView");
-		}
+
+		SceneManager.LoadScene ("WorldMap");
+//		if ((GM.DaysUntilStarvation <= 0) || (_outcome == GameManager.GOT_EATEN)) {
+//			GM.RestartGame ();
+//		} else {
+//			SceneManager.LoadScene ("AppView");
+//		}
 	}
 
 	void LoadOutcomeText(int status){
@@ -223,15 +239,15 @@ public class LevelManager : MonoBehaviour {
 
     public void LoadOutcomeSceneForEndOfDay()
 	{
-		var daysTillStarvation = GameManager.Instance.DaysUntilStarvation;
+		//var daysTillStarvation = GameManager.Instance.DaysUntilStarvation;
 		SceneManager.LoadScene ("OutcomeView", LoadSceneMode.Single);
 
 		//after scene is loaded - populate it with outcome text
-		if (daysTillStarvation <= 0) {
-			_outcome = GameManager.STARVED;
-		} else {
-			_outcome = GameManager.NO_MATCH_FOR_DAY;
-		}
+//		if (daysTillStarvation <= 0) {
+//			_outcome = GameManager.STARVED;
+//		} else {
+//			_outcome = GameManager.NO_MATCH_FOR_DAY;
+//		}
 	}
 
 	private void OnLevelWasLoaded(int level) {
@@ -250,15 +266,15 @@ public class LevelManager : MonoBehaviour {
 			dino1Sprite.enabled = true;
 			dino2Sprite.enabled = true;
 
-			if (_outcome == GameManager.ATE_OTHER) {
+			if (_outcome == GameManager.DEFEATED_OTHER) {
 				dino1Anim.SetTrigger ("Attacking");
 				dino2Sprite.flipX = true;
 			} else if (_outcome == GameManager.GOT_EATEN) {
 				dino2Anim.SetTrigger ("Attacking");
 				dino1Sprite.flipX = false;
-			} else if (_outcome == GameManager.FAILED_DUE_TO_TIE) {
-				dino1Sprite.flipX = false;
-				dino2Sprite.flipX = true;
+//			} else if (_outcome == GameManager.FAILED_DUE_TO_TIE) {
+//				dino1Sprite.flipX = false;
+//				dino2Sprite.flipX = true;
 			} else if (_outcome == GameManager.STARVED) {
 				dino1Sprite.transform.Rotate (Vector3.forward * 90);
 				dino1Anim.enabled = false;
