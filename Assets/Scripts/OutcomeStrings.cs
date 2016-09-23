@@ -5,8 +5,8 @@ using System.Collections.Generic;
 public class OutcomeStrings : MonoBehaviour {
 
 	protected static Dictionary<int, string> statusChanges = new Dictionary<int, string>(){ 
-		{GameManager.DEFEATED_OTHER, "+1 day"}, 
-		{GameManager.NO_MATCH_FOR_DAY, "-1 day"},
+		{GameManager.DEFEATED_OTHER, "+10 health"}, 
+		{GameManager.GOT_DEFEATED, "-10 health"},
         //{GameManager.FAILED_DUE_TO_TIE, "-1 day" },
 		{GameManager.GOT_EATEN,"Game over."},
         {GameManager.STARVED, "Game over." }
@@ -32,7 +32,7 @@ public class OutcomeStrings : MonoBehaviour {
 		        return "No more singles in your area.";
 //            case GameManager.TIED:
 //                return sameSizeStrings[Random.Range(0, sameSizeStrings.Count)];
-            case GameManager.GOT_EATEN:
+			case GameManager.GOT_DEFEATED:
 				return gotEatenOutcomeStrings [Random.Range (0, gotEatenOutcomeStrings.Count)];
             case GameManager.STARVED:
 		        return "You've starved and died.";

@@ -84,7 +84,7 @@ public class LevelManager : MonoBehaviour {
             //		{
             //			dinosaurList = DinosaursInfo.getDinosaursForLevel(level);
             //		}
-            _dinosaurList = DinosaursInfo.getDinosaursForZoneName(_currentZoneName);
+			_dinosaurList = new List<Dinosaur>(DinosaursInfo.getDinosaursForZoneName(_currentZoneName));
             _currentDino = _dinosaurList.FirstOrDefault();
 
 			_dinosaurList.Remove (_currentDino);
