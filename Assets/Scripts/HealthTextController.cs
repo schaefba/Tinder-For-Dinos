@@ -15,7 +15,7 @@ public class HealthTextController : MonoBehaviour {
 	void Update () {
 	
 
-		PlayerHealth playerHealth = GameObject.Find ("Player").GetComponent<PlayerHealth> ();
+		PlayerHealth playerHealth = GameObject.Find (PlayerInfo.PLAYER_AVATAR_ID).GetComponent<PlayerHealth> ();
 		gameObject.GetComponent<Text> ().text = "Health: " + playerHealth.GetHealthValue ();
 	}
 }

@@ -6,6 +6,9 @@ public class PlayerInfo : MonoBehaviour {
 
 	private int _size = 5;
 
+    public const string PLAYER_AVATAR_ID = "PlayerAvatar";
+    public const string PLAYER_CHARACTER_ID = "Player";
+
 	public int GetSize() {
 		return _size;
 	}

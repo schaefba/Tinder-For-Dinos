@@ -12,7 +12,7 @@ public class Zone : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		_mapController = GameObject.Find ("Player").GetComponent<MapMovementController> ();
+		_mapController = GameObject.Find (PlayerInfo.PLAYER_AVATAR_ID).GetComponent<MapMovementController> ();
 
 		_button = gameObject.GetComponent<Button> ();
 		_button.onClick.AddListener (() => _mapController.EngageNode (gameObject));

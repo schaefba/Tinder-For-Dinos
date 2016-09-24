@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 413afa9a512294724941b11bdcab9f69
-timeCreated: 1474657520
+timeCreated: 1474735807
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -222,10 +222,10 @@ TextureImporter:
       name: 2dpixx_ccart_indoor_tiles_11
       rect:
         serializedVersion: 2
-        x: 425
+        x: 427
         y: 453
-        width: 302
-        height: 274
+        width: 298
+        height: 273
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
