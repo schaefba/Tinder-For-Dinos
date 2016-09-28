@@ -1890,6 +1890,8 @@ GameObject:
   - 212: {fileID: 1089005410}
   - 95: {fileID: 1089005409}
   - 114: {fileID: 1089005412}
+  - 61: {fileID: 1089005413}
+  - 50: {fileID: 1089005414}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1972,6 +1974,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerSpeed: 5
+--- !u!61 &1089005413
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1089005408}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 0.85, y: 1}
+--- !u!50 &1089005414
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1089005408}
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1098761680
 GameObject:
   m_ObjectHideFlags: 0
@@ -2506,6 +2539,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 1759788431}
   - 212: {fileID: 1759788430}
+  - 114: {fileID: 1759788432}
+  - 61: {fileID: 1759788433}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -2559,6 +2594,35 @@ Transform:
   m_Children: []
   m_Father: {fileID: 136116823}
   m_RootOrder: 0
+--- !u!114 &1759788432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1759788429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab96fae4c820f42299f764ab573dec2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _controlsForTransition:
+  - w
+  - up
+  verticalEntrance: 1
+--- !u!61 &1759788433
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1759788429}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 1.22, y: 1.47}
 --- !u!1 &1806169068
 GameObject:
   m_ObjectHideFlags: 0
