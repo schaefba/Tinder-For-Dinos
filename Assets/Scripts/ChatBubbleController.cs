@@ -15,6 +15,7 @@ public class ChatBubbleController : MonoBehaviour
 
     void Awake()
     {
+		transform.SetParent (GameObject.Find ("Canvas").transform, false);
         _chatContent = new List<string>();
         _textObject = gameObject.transform.GetComponentInChildren<Text>();
         _targetedForDestruction = false;
@@ -33,7 +34,7 @@ public class ChatBubbleController : MonoBehaviour
 	    {
 	        _textObject.text = _chatContent.First();
 
-	        if (Input.GetKey(KeyCode.Return))
+	        if (Input.GetKeyDown(KeyCode.Return))
 	        {
 	            _chatContent.RemoveAt(0);
 	        } 
