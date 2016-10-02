@@ -13,11 +13,13 @@ public class ChatBubbleController : MonoBehaviour
     //private Image _chatBackground;
     private bool _targetedForDestruction;
 
+	private IChatable chatter;
+
     void Awake()
     {
-		transform.SetParent (GameObject.Find ("Canvas").transform, false);
+		
         _chatContent = new List<string>();
-        _textObject = gameObject.transform.GetComponentInChildren<Text>();
+        
         _targetedForDestruction = false;
         //_chatBackground = gameObject.transform
     }
@@ -25,6 +27,10 @@ public class ChatBubbleController : MonoBehaviour
 	// Use this for initialization
 	void Start () {
 	    
+		transform.SetParent (GameObject.Find ("Canvas").transform, false);
+		_textObject = gameObject.transform.GetComponentInChildren<Text>();
+		gameObject.SetActive (false);
+		gameObject.SetActive (true);
 	}
 	
 	// Update is called once per frame
@@ -46,12 +52,15 @@ public class ChatBubbleController : MonoBehaviour
 
 	    if (_targetedForDestruction)
 	    {
-	        Destroy(gameObject);
+			chatter.finishConversation ();
+			Destroy(gameObject);
 	    }
 	}
 
-    public void SetChatContent(List<string> chatSequence)
+	public void SetChatContent(List<string> chatSequence, IChatable chatter)
     {
+
+		this.chatter = chatter;
         _chatContent = chatSequence;
     }
 
