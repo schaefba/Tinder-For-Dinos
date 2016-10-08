@@ -734,7 +734,7 @@ Prefab:
       objectReference: {fileID: 780018762}
     - target: {fileID: 157336, guid: c32c3b93268653f49904a278838ad145, type: 2}
       propertyPath: m_Name
-      value: StartZone
+      value: HomeZone
       objectReference: {fileID: 0}
     - target: {fileID: 11413644, guid: c32c3b93268653f49904a278838ad145, type: 2}
       propertyPath: neighbors.Array.data[1]
@@ -1659,6 +1659,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1743683669}
     m_Modifications:
+    - target: {fileID: 11413644, guid: c32c3b93268653f49904a278838ad145, type: 2}
+      propertyPath: neighbors.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 11498886, guid: c32c3b93268653f49904a278838ad145, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 0

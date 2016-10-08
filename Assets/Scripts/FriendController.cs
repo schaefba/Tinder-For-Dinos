@@ -19,6 +19,7 @@ public class FriendController : MonoBehaviour, IChatable {
 
 	void Awake () {
 
+		//isInitialConversation = true;
 		isChatting = true;
 	}
 
@@ -35,11 +36,10 @@ public class FriendController : MonoBehaviour, IChatable {
 	
 	// Update is called once per frame
 	void Update () {
-	
 
 		if (!isChatting) {
 
-			if (Vector2.Distance (player.transform.position, gameObject.transform.position) <= 10) {
+			if (Vector2.Distance (player.transform.position, gameObject.transform.position) <= 1) {
 
 				if (Input.GetKeyDown (KeyCode.E)) {
 
@@ -52,6 +52,8 @@ public class FriendController : MonoBehaviour, IChatable {
 			}
 		}
 	}
+
+
 
 	public void finishConversation() {
 

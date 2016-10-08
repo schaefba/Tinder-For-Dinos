@@ -32,7 +32,7 @@ public class MapMovementController : MonoBehaviour
     // Use this for initialization
 	void Start () {
 		//currentZone = startZone;
-		currentZone = GameObject.Find("StartZone").GetComponent<Zone>();
+		currentZone = GameObject.Find("HomeZone").GetComponent<Zone>();
 		_currentZoneName = currentZone.name;
         characterBody = gameObject.GetComponent<Rigidbody2D>();
         Vector3 newCharacterPosition = new Vector3(currentZone.transform.position.x, currentZone.transform.position.y, -1);
@@ -79,12 +79,16 @@ public class MapMovementController : MonoBehaviour
 
 		if (moveToZone == currentZone) { 
 
-			
+			_levelManager.setCurrentZone(currentZone);
 			Debug.Log("Same node");
-            _levelManager.setCurrentZone(currentZone);
-            SceneManager.LoadScene("AppView");
-            
-		    //Debug.Log("Same node");
+
+			if (moveToZone.name == "HomeZone") {
+
+				SceneManager.LoadScene ("HomeZone");
+			} else {
+				
+				SceneManager.LoadScene("AppView");
+			}
 
 		} else {
 
@@ -94,10 +98,6 @@ public class MapMovementController : MonoBehaviour
 				_moveToNodeName = _moveToNode.name;
 			}
 		}
-
-	    
-	    
-        Debug.Log("Moveeeee");
     }
 
 	public GameObject GetNodeForName(string nodeName) {
