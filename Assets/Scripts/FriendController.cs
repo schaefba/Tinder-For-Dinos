@@ -14,23 +14,28 @@ public class FriendController : MonoBehaviour, IChatable {
 
 	private GameObject player;
 
-	//private bool isInitialConversation;
-	private bool isChatting;
+	private static bool hadInitialConversation;
+	private static bool isChatting;
 
 	void Awake () {
 
 		//isInitialConversation = true;
-		isChatting = true;
+		
 	}
 
 	// Use this for initialization
 	void Start () {
-	
-		GameObject chatBubble = GameObject.Instantiate(Resources.Load("Prefabs/ChatBubble")) as GameObject;
 
-		ChatBubbleController chatController = chatBubble.GetComponent<ChatBubbleController> ();
-		chatController.SetChatContent(initialConversation, this);
+	    if (!hadInitialConversation)
+	    {
+            GameObject chatBubble = Instantiate(Resources.Load("Prefabs/ChatBubble")) as GameObject;
 
+            ChatBubbleController chatController = chatBubble.GetComponent<ChatBubbleController>();
+            chatController.SetChatContent(initialConversation, this);
+            isChatting = true;
+	        hadInitialConversation = true;
+	    }
+		
 		player = GameObject.Find ("Player");
 	}
 	
