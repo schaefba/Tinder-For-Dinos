@@ -24,7 +24,8 @@ public class ChatBubbleController : MonoBehaviour
         //_chatBackground = gameObject.transform
     }
 
-	// Use this for initialization
+
+	// Use this for initialization 
 	void Start () {
 	    
 		transform.SetParent (GameObject.Find ("Canvas").transform, false);
