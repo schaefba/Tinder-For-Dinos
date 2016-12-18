@@ -154,12 +154,12 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	private void UpdateZoneText(string zoneName) {
-		_levelTransitionText.text = "Day " + zoneName;
+		_levelTransitionText.text = zoneName;
 	}
 
 	private void UpdateLevelText(int level)
 	{
-		_levelTransitionText.text = "Day " + level;
+		_levelTransitionText.text = level.ToString();
 	}
 
 	private void ShowLevelImage()
